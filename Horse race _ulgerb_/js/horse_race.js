@@ -8,7 +8,7 @@ var finish = 12900, bar_limit = Math.floor(finish/100)+10
 var $mainbox = $(".mainbox");
 var barrier=[];
 var listbox=[];
-$(".mainbox").css({ width : finish+50})
+$(".mainbox").css({ width : finish-130 })
 $(".mainbox_around").css({ width: finish + 1500 })
 // $(".mainbox").css({ witdh: finish + 500 })
 // $(".mainbox").css({ witdh: finish + 500 })
@@ -46,7 +46,7 @@ $(".startrace").click( async () => {
         boxShadow: "none",
     })
     $(".box").css({
-        transition: "8s",
+        transition: "10s",
     })
     $(".stant_o").slideUp(100);
     // for(let i =1; i < 7 ;i++){
@@ -58,7 +58,7 @@ $(".startrace").click( async () => {
             
         // }
     // }
-    while (finish_race <= finish){
+    while (finish_race-100 <= finish){
         // horse move x
         box_number = Math.floor(Math.random() * 28)/4;
         box_number2 = Math.floor(Math.random() * 56) / 8;
@@ -123,8 +123,7 @@ $(".startrace").click( async () => {
         // console.log(horse1 + horses.horse1);
         
     }
-    if (finish_race >= finish-1) {
-        var stopfor = true;
+    if (finish_race-100 >= finish) {
         $("body").stop()
         $(".box").stop()
         $(".boxgame").stop()
@@ -138,7 +137,8 @@ $(".startrace").click( async () => {
                 horse6 = $(".box6").offset().left,
             ];
         liste_offset.sort(function (a, b) { return b - a });
-
+        
+            // indexOf ================
         for (var j = 1; j <= 6; j++) {
             for (var k = 1; k <= 6; k++) {
                 // console.log($(".box" + k).offset().left);
