@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horse RACE</title>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://kit.fontawesome.com/65e58e855e.js" crossorigin="anonymous"></script>
+    <style type="text/css">
+
+        body {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 70em;
+            font-size: 16px;
+            font-family: 'PT Sans Narrow', sans-serif;
+            /* width: 100%; */
+        }
+        .updiv{
+            margin: 0px 0px 0px 50px;
+        }
+        .point_ranking{
+            display: inline-flex;
+        }
+        /* .ste, .bol, .tim, .dra, .dam, .vel{
+            display: block;
+            position: relative;
+        } */
+        .startrace{
+            font-size: 20px;
+            border-radius: 5px;
+            color: #f6e6aa;
+            background: rgb(249, 138, 138);
+            border: 4px solid darkred;
+            box-shadow: 1px 1px 4px 1px rgb(0, 0, 0, 0.5);
+            font-family: 'PT Sans Narrow', sans-serif;
+            font-size: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .2s;
+        }
+        .startrace:hover{
+            background: rgb(159, 0, 0);
+            transform: scale(1.1,1.1);
+        }
+        .startrace:hover:active{
+            color: brown;
+            background: rgb(255, 255, 255);
+            transform: scale(0.95,0.95);
+            border: 4px solid rgb(0, 0, 0);
+            box-shadow: 0px 0px 2px 2px rgb(0, 0, 0);
+        }
+        .rankh{
+            
+            display: none;
+            position: relative;
+            height: 50px;
+        }
+        .rankdiv{
+            width: 130px;
+            height: 50px;
+            background: #c19c19;
+            margin: 0px 5px 0px 0px;
+            border-radius: 5px;
+            box-shadow: 4px 4px 8px rgb(0, 0, 0, 0.2);
+            display: flex;
+            position: absolute;
+            overflow: hidden;
+        }
+        .horseimg{
+            width: 50px;
+            height: 50px;
+            background: #191919;
+            border-radius: 5px;
+        }
+        .horseinfo{
+            margin: 0px 0px 0px 3px;
+        }
+        .horsename{
+            width: 50px;
+            height: 18px;
+            margin: 0px 0px 0px 0px;
+            padding: 3px 0px 0px 0px;
+        }
+        .horsecoin {
+            margin: -10px 0px 0px 0px;
+            /* display: flex;
+            align-items: flex-end;
+            justify-content: space-evenly; */
+        }
+        .horsecoin p{
+            font-size: 16px;   
+            display: flex;
+            justify-content: space-between;
+        }
+        .ranking{
+            margin: -4px 0px 0px 0px ;
+            font-size: 20px;
+            color: rgb(0, 0, 0)    ;
+        }
+        .money{
+            margin: 0px -0px 0px 10px;
+        }
+        .coinimg{
+            margin: -8px -8px 0px -8px;
+            width: 30px;
+            animation: coinke 3s linear alternate infinite ;
+            transition: transform 1s;
+        }
+        @keyframes coinke {
+            100%{
+                transform: rotatey(360deg) 
+            }
+        }
+
+        /* ===================   race pist   ==================== */
+        /* =================== horse setting ====================== */
+        .boxgame{
+            position: relative;
+            width: 1000px;
+            height: 600px;
+            background: linear-gradient(0deg, rgb(75, 48, 0), rgb(182, 100, 0),rgb(122, 67, 0));
+            margin: 0px 0px 0px 50px;
+            overflow: hidden;
+            border: 3px solid rgb(0, 0, 0, 0.5);
+            border-radius: 5px;
+            box-shadow: 6px 4px 6px  rgb(0, 0, 0, 0.5);
+        }
+        
+        /* Race in site */
+        .mainbox {
+            /* margin: 0px 0px 0px 100px; */
+            /* width: 10000px; */
+            height: 600px;
+            background: linear-gradient(0deg, rgb(75, 48, 0), rgb(182, 100, 0),rgb(122, 67, 0));
+            border-right: 8px groove white ;
+            position: absolute;
+            left: 0px;
+            transition: 2s;
+            
+        }
+        /* race on site */
+        .mainbox_around{
+            /* width: 11500px; */
+            height: 160px;
+            margin: -10px 0px 0px 0px;
+            background: linear-gradient(0deg, rgb(8, 93, 0), rgb(8, 93, 0),rgb(8, 93, 0));
+            position: absolute;
+            display: flex;
+            top: 10px;
+        }
+        
+        .mainbox_up{
+            width: 11500px;
+            height: 440px;
+            position: absolute;
+            display: flex;
+            top: 140px;
+        }
+        .mainbox_down{
+            width: 11500px;
+            height: 80px;
+            /* background: #000; */
+            position: absolute;
+            display: flex;
+            bottom: 30px;
+        }
+        .hedgeall{
+            display: flex;
+            /* position: relative; */
+        }
+        .hedge1{
+            width: 100px;
+            height: 10px;
+            position: relative;
+            top: 20px;
+            transform:matrix(1.00,0.00,-0.20,1.00,0,0);
+            background: linear-gradient(0deg, rgb(75, 33, 0), rgb(159, 69, 0),rgb(207, 90, 0) );
+            box-shadow: 0px 20px 5px -2px rgb(0, 0, 0, 0.5);
+        }
+        .hedge2{
+            width: 8px;
+            height: 60px;
+            position: relative;
+            top: 10px;
+            margin: 0px 0px 0px -2px;
+            transform:matrix(1.08,0.00,-0.2,0.80,-4,0);
+            background: linear-gradient(90deg, rgb(75, 33, 0), rgb(159, 69, 0),rgb(207, 90, 0) );
+            box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 1.5);
+        }
+        .boxlar {
+            /* margin: 0px 0px 0px 100px; */
+            left: 0;
+            position: absolute;
+            padding: 5px 0px 0px 0px;
+            /* transition: 1s; */
+            width: 100%;
+            height:100%;
+        }
+        .box {
+            
+            left: 5px;
+            /* transition: 3s; */
+            margin: 10px 0px 0px 0px;
+            position: absolute;
+            bottom: 0; 
+            display: block;
+            width: 50px;
+            height: 50px;
+        }
+        .box span{
+            font-size: 10px;
+            color: aliceblue;
+            text-shadow: 4px 4px 8px #191919;
+            position: absolute;
+            transform: translate(80px,-10px);
+            margin: 55px 0px 0px 0px;
+            z-index: 1;
+        }
+        .box svg{
+            height: 250%;
+            width: 250%;
+            transform:scale(-1,1) ;
+            /* box-shadow: -80px 20px 0px 0px black; */
+        }
+        
+        .horse_hind2{
+            fill: rgb(127,86,57);
+            animation: horsehind2 1s infinite cubic-bezier(0.68, .62, 0.25, 1) alternate ;
+            /* rgb(68,49,38) */
+        }
+        .horse_hind1 {
+            fill: rgb(170,115,77); 
+            transform: skew(4deg); 
+            animation: horsehind1 1s infinite cubic-bezier(0.68, .12, 0.25, 1) alternate ;
+        }
+        .horse_front2 {
+            fill: rgb(127,86,57);
+            animation: horsefront2 1s infinite cubic-bezier(0.68, .32, 0.45, 1) alternate ;
+        }
+        .horse_front1{
+            fill: rgb(170,115,77); 
+            animation: horsefront2 1s infinite cubic-bezier(0.48, .62, 0.55, 1) alternate ;
+        }
+        .horse_tail{
+            fill: rgb(46, 34, 27) ;
+            animation: horsehead 1s infinite cubic-bezier(0.88, .22, 0.45, 1) alternate-reverse ;
+        }
+        .horse_body{
+            fill: rgb(170,115,77);
+            animation: horsebody 1s infinite cubic-bezier(0.48, .62, 0.55, 1) alternate-reverse ;
+        }
+        .horse_head{
+            fill: rgb(170,115,77);
+            animation: horsehead 1s infinite cubic-bezier(0.48, .62, 0.55, 1) alternate-reverse ;
+        }
+        .animoff{
+            animation: none;
+        }
+        @keyframes horsehind2 {
+            100% {
+                transform: matrix(1, 0.88,-.90, .32, 450, -510 ) ;
+            }
+        }
+        @keyframes horsehind1 {
+            100% {
+                transform: matrix(1, 0.9,-.95, .30, 450, -550 ) ;
+            }
+        }
+        @keyframes horsefront2 {
+            100% {
+                transform: matrix(1, 0.9,-.90, .32, 450, -360 ) ;
+            }
+        }
+        @keyframes horsebody{
+            100% {
+                transform: matrix(1.08, -0,0.2, 1.08, -150, -35 ) ;
+            }
+        }
+        @keyframes horsehead{
+            100% {
+                transform: matrix(1.05, -0.1,0.3, 1.05, -160, 55 ) ;
+            }
+        }
+        /* horse2 */
+        .box2 path:nth-child(2){
+            fill: rgb(150, 92, 40) ;
+        }
+        .box2 path:nth-child(1) {
+            fill: rgb(69, 35, 6) ;
+        }
+        .box2 path:nth-child(4),.box2 :nth-child(5),.box2 :nth-child(3),.box2 path:nth-child(6) {
+            fill: rgb(25, 13, 2) ;
+        }
+        /* horse3 */
+        .box3 path:nth-child(2){
+            fill: rgb(238, 238, 238) ;
+        }
+        .box3 path:nth-child(1) {
+            fill: rgb(202, 202, 202) ;
+        }
+        .box3 path:nth-child(4),.box3 :nth-child(5),.box3 :nth-child(3),.box3 path:nth-child(6) {
+            fill: rgb(160, 160, 160) ;
+        }
+        /* horse4 */
+        .box4 path:nth-child(2){
+            fill: rgb(213, 85, 46) ;
+        }
+        .box4 path:nth-child(1) {
+            fill: rgb(146, 34, 0) ;
+        }
+        .box4 path:nth-child(4),.box4 :nth-child(5),.box4 :nth-child(3),.box4 path:nth-child(6) {
+            fill: rgb(107, 25, 0) ;
+        }
+        /* horse5 */
+        .box5 path:nth-child(2){
+            fill: rgb(210, 148, 77) ;
+        }
+        .box5 path:nth-child(1) {
+            fill: rgb(133, 72, 1) ;
+        }
+        .box5 path:nth-child(4),.box5 :nth-child(5),.box5 :nth-child(3),.box5 path:nth-child(6) {
+            fill: rgb(94, 50, 0) ;
+        }
+        /* horse6 */
+        .box6 path:nth-child(2){
+            fill: rgba(210, 77, 144, 0.788) ;
+        }
+        .box6 path:nth-child(1) {
+            fill: rgb(133, 1, 74) ;
+        }
+        .box6 path:nth-child(4),.box6 :nth-child(5),.box6 :nth-child(3),.box6 path:nth-child(6) {
+            fill: rgb(94, 0, 45) ;
+        }
+        /* stant */
+        .stant{
+            width: 160px;
+            height: 600px;
+            /* background: #000; */
+            position: absolute;
+            bottom: 0px;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            align-items: flex-end;
+
+        }
+        .stant_o{
+            width: 40px;
+            height: 40px;
+            background: white;
+            position: absolute;
+            margin: 0px 0px 0px 0px;
+            /* z-index: 1; */
+        }
+        
+    </style>
+</head>
+
+<body>
+    <main >
+        <div class="updiv">
+            <h2>Horse Races</h2>
+            
+            <button class="startrace">Start Race</button>
+            <br><br>
+            <div class="point_ranking">
+                <!-- 1 -->
+                <div class="rankhorse1 rankh">
+                    <div class="rankdiv">
+                        <div class="horseimg"></div>
+                        <div class="horseinfo">
+                            <span class="horsename1">Stealin Pau</span>
+                            <div class="horsecoin">
+                                <p >
+                                    <span class="ranking ranking1">1.</span>
+                                    <span class="money money1">0</span>
+                                    <img class="coinimg" src="coin.svg" alt="coin">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 2 -->
+                <div class="rankhorse2 rankh">
+                    <div class="rankdiv">
+                        <div class="horseimg"></div>
+                        <div class="horseinfo">
+                            <span class="horsename2">Bold Pilot</span>
+                            <div class="horsecoin">
+                                <p>
+                                    <span class="ranking ranking2">2.</span>
+                                    <span class="money money2">0</span>
+                                    <img class="coinimg" src="coin.svg" alt="coin">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 3 -->
+                <div class="rankhorse3 rankh">
+                    <div class="rankdiv">
+                        <div class="horseimg"></div>
+                        <div class="horseinfo">
+                            <span class="horsename3">Timurhan</span>
+                            <div class="horsecoin">
+                                <p>
+                                    <span class="ranking ranking3">3.</span>
+                                    <span class="money money3">0</span>
+                                    <img class="coinimg" src="coin.svg" alt="coin">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 4 -->
+                <div class="rankhorse4 rankh">
+                    <div class="rankdiv">
+                        <div class="horseimg"></div>
+                        <div class="horseinfo">
+                            <span class="horsename4">Dragon</span>
+                            <div class="horsecoin">
+                                <p>
+                                    <span class="ranking ranking4">4.</span>
+                                    <span class="money money4">0</span>
+                                    <img class="coinimg" src="coin.svg" alt="coin">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 5 -->
+                <div class="rankhorse5 rankh">
+                    <div class="rankdiv">
+                        <div class="horseimg"></div>
+                        <div class="horseinfo">
+                            <span class="horsename5">Damista</span>
+                            <div class="horsecoin">
+                                <p>
+                                    <span class="ranking ranking5">5.</span>
+                                    <span class="money money5">0</span>
+                                    <img class="coinimg" src="coin.svg" alt="coin">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 6 -->
+                <div class="rankhorse6 rankh">
+                    <div class="rankdiv">
+                        <div class="horseimg"></div>
+                        <div class="horseinfo">
+                            <span class="horsename6">Velociraptor</span>
+                            <div class="horsecoin">
+                                <p>
+                                    <span class="ranking ranking6">6.</span>
+                                    <span class="money money6">0</span>
+                                    <img class="coinimg" src="coin.svg" alt="coin">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="boxgame">
+            <div class="mainbox">
+                <div class="mainbox_around"></div>
+                <div class="mainbox_up"> 
+                    <div class="hedgeall hedgeall1">
+                        
+                    </div>
+                    
+                </div>
+                <div class="mainbox_down">
+                    <div class="hedgeall hedgeall2">
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="boxlar">
+                <div class="stant">
+                    <div class="stant_open1 stant_o"></div>
+                    <div class="stant_open2 stant_o"></div>
+                    <div class="stant_open3 stant_o"></div>
+                    <div class="stant_open4 stant_o"></div>
+                    <div class="stant_open5 stant_o"></div>
+                    <div class="stant_open6 stant_o"></div>
+                </div>
+                <!-- horse1 : "Stealin Pau",
+                horse2 : "Bold Pilot",
+                horse3 : "Timurhan",
+                horse4 : "Dragon",
+                horse5 : "Damista",
+                horse6 : "Velociraptor", -->
+                <div class="box box1">
+                    <span>Stealin Pau</span>
+                    <svg  xmlns:xlink="" style="isolation:isolate"
+                        viewBox="580 226 650 480" width="550pt" height="550pt">
+                    
+                        
+                        <defs >
+                            <clipPath id="_clipPath_9uXmbQzkhVRX5Jj2CntmbcrVqYT1fTDl">
+                                <rect x="630" y="226" width="550" height="550" />
+                            </clipPath>
+                        </defs>
+                        
+                        <g clip-path="url(#_clipPath_pvwsQttPN9lcE3z9mWP6lKXXXnzHlmOJ)" class="removeclass">
+                            <g>
+                                <g>
+                                    <!-- hind toynak -->
+                                    <g class="horse_hind2 animoff animoff">
+                                        <path 
+                                            d=" M 944.417 493.002 L 1027.316 636.162 C 1030.058 640.899 1029.08 646.712 1025.033 649.722 L 1024.093 650.421 L 1037.061 667.861 L 1012.988 685.762 L 1010.777 675.295 C 1009.273 668.176 1011.371 661.118 1016.211 656.477 L 1016.118 656.351 L 1016.068 656.388 L 904.295 522.838 L 944.417 493.002 Z "
+                                            fill="" />
+                                        <path 
+                                            d=" M 1011.459 674.788 C 1009.784 666.857 1012.566 658.993 1018.645 654.472 L 1024.775 649.914 L 1037.743 667.354 L 1013.67 685.255 L 1011.459 674.788 Z "
+                                            fill="rgb(32,32,0)" />
+                                    </g>
+                                    <g class="horse_hind1 animoff animoff">
+                                        <path 
+                                            d=" M 993.873 474.021 C 995.694 479.515 999.565 486.142 1007.069 494.566 L 1100.417 602.085 C 1104.707 606.197 1105.612 612.275 1102.525 616.264 L 1101.808 617.191 L 1120.486 631.644 L 1102.127 655.37 L 1096.511 645.37 C 1092.711 638.604 1092.508 631.05 1095.807 625.245 L 1095.04 624.65 L 1035.452 583.384 L 953.281 526.478 L 993.873 474.021 L 993.873 474.021 Z "
+                                            fill="" />
+                                        <path 
+                                            d=" M 1102.022 655.289 L 1120.382 631.563 L 1101.981 617.324 L 1097.306 623.366 C 1092.67 629.356 1092.369 637.881 1096.53 645.385 L 1102.022 655.289 Z "
+                                            fill="rgb(32,32,0)" />
+                                    </g>
+                                    <g class="horse_front2 animoff animoff">
+                                        <path 
+                                            d=" M 790.187 481.076 L 864.25 630.703 C 866.7 635.653 865.36 641.421 861.122 644.156 L 860.138 644.792 L 872.032 663.223 L 846.826 679.49 L 845.264 668.823 C 844.205 661.59 846.716 654.663 851.819 650.343 L 851.819 650.343 L 851.735 650.214 L 748.176 508.189 L 790.187 481.076 Z "
+                                            fill="" />
+                                        <path 
+                                            d=" M 845.465 669.134 C 844.434 661.288 847.803 653.738 854.169 649.63 L 860.587 645.488 L 872.032 663.223 L 846.826 679.49 L 845.465 669.134 Z "
+                                            fill="rgb(32,32,0)" />
+                                    </g>
+                                    <g class="horse_front1 animoff animoff">
+                                        <path 
+                                            d=" M 717.016 515.935 C 718.064 515.807 719.112 515.675 720.16 515.509 L 776.44 678.75 L 776.481 678.926 C 770.241 681.358 765.639 687.46 764.349 695.283 L 762.446 706.823 L 791.663 700.015 L 786.179 676.48 L 787.321 676.214 C 792.232 675.07 795.345 669.685 794.583 663.655 L 774.032 501.191 L 775.256 500.858 L 717.016 515.935 L 717.016 515.935 Z "
+                                            fill="" />
+                                        <path 
+                                            d=" M 761.436 706.577 L 790.654 699.769 L 785.17 676.235 L 777.73 677.968 C 770.353 679.687 764.781 686.295 763.339 695.038 L 761.436 706.577 Z "
+                                            fill="rgb(32,32,0)" />
+                                    </g>
+                                    <!-- tail kuyruk -->
+                                    <g class="horse_tail animoff animoff">
+                                        <path 
+                                            d=" M 1177.163 540.799 L 1177.163 540.799 C 1153.905 564.403 1115.916 564.683 1092.313 541.425 L 1006.837 457.201 L 1006.837 457.201 C 1030.095 433.597 1068.084 433.317 1091.687 456.575 L 1177.163 540.799 Z "
+                                            fill="rgb(32,32,0)" />
+                                        <path 
+                                            d=" M 1171.431 535.152 C 1151.457 540.64 1129.186 535.641 1113.369 520.056 L 1033.625 441.479 C 1053.599 435.991 1075.87 440.99 1091.687 456.575 L 1171.431 535.152 Z "
+                                            fill="rgb(86,61,45)" />
+                                    </g>
+                                    <!-- body gövde -->
+                                    <g class="horse_body animoff animoff">
+                                        <path
+                                            d=" M 831.624 372.815 L 847.798 393.966 C 859.528 409.305 877.922 418.061 897.223 417.493 L 975.952 415.177 C 1009.663 414.186 1036.593 440.867 1037.681 472.999 L 1037.681 473 C 1037.742 474.823 1037.731 476.66 1037.623 478.512 C 1034.632 503.114 1033 502.669 1033 502.669 C 1028.998 518.654 1020.807 519.567 1007.173 526.515 L 1007.173 526.515 L 940.845 526.515 L 940.794 525.703 L 819.215 529.388 L 759.073 530.602 L 759.073 530.602 C 718.298 531.149 707.298 533.649 706.132 465.544 C 707.544 450.012 708.067 434.423 707.701 418.852 L 831.624 372.815 L 831.624 372.815 Z "
+                                            fill="" />
+                                        <path
+                                            d=" M 970 443 L 970 443 C 958.954 443 950 451.954 950 463 L 950 473 C 950 489.569 963.431 503 980 503 L 990 503 C 1001.046 503 1010 494.046 1010 483 L 1010 483 C 1010 460.909 992.091 443 970 443 Z "
+                                            fill="rgb(196,136,102)" />
+                                        <path
+                                            d=" M 940.415 525.715 L 819.689 529.373 C 818.149 529.42 817.414 527.472 818.621 526.515 C 825.552 521.021 830 512.532 830 503 L 830 502.895 C 829.991 497.453 834.436 493 839.878 493 L 920.349 493 C 925.686 493 930.01 497.332 930.001 502.669 L 930 503 C 930 512.081 934.041 520.213 940.415 525.715 Z "
+                                            fill="rgb(147,100,68)" />
+                                        <path
+                                            d=" M 831.68 372.794 L 847.87 393.966 C 857.186 406.149 870.712 414.158 885.552 416.662 L 857.295 417.493 C 837.994 418.061 819.599 409.305 807.87 393.966 L 800.529 384.367 L 831.68 372.794 L 831.68 372.794 Z "
+                                            fill="rgb(86,61,45)" />
+                                        <path
+                                            d=" M 831.53 372.85 L 847.678 393.966 C 850.708 397.928 854.189 401.44 858.009 404.473 C 843.016 402.045 829.335 393.996 819.937 381.706 L 817.228 378.163 L 831.53 372.85 L 831.53 372.85 Z "
+                                            fill="rgb(109,78,60)" />
+                                        <path
+                                            d=" M 741.539 406.281 L 749.005 438.802 C 751.309 448.837 748.118 459.244 740.853 466.539 C 732.617 474.809 726.182 484.873 722.178 496.093 C 720.435 500.978 713.661 501.329 711.433 496.645 C 706.994 487.312 704.902 476.682 705.915 465.543 L 705.915 465.543 C 707.324 450.038 707.848 434.476 707.485 418.933 L 741.539 406.281 L 741.539 406.281 Z "
+                                            fill="rgb(147,100,68)" />
+                                        
+                                    </g>
+                                    <!-- head kafa -->
+                                    <g class="horse_head animoff animoff">
+                                        <path
+                                            d=" M 832.013 374.575 L 745.965 251.727 C 742.162 246.298 736.258 243.112 729.998 243.112 L 729.998 232.269 C 729.998 226.138 725.445 221.168 719.83 221.168 L 719.83 232.14 L 709.78 232.14 L 709.78 243.112 L 706.332 243.112 C 695.67 243.112 685.445 247.736 677.905 255.967 L 623.785 315.052 C 621.051 318.039 619.348 322.046 619.329 326.268 C 619.291 334.872 625.669 341.861 633.542 341.861 L 691.383 341.861 C 696.48 341.861 700.77 346.026 701.365 351.552 L 704.763 383.088 C 706.267 397.043 707.17 411.059 707.469 425.087 L 832.013 374.575 L 832.013 374.575 Z "
+                                            fill="" />
+                                        <path
+                                            d=" M 714.365 281.318 C 716.099 289.563 710.635 297.442 702.908 298.045 C 702.795 298.054 702.682 298.064 702.569 298.074 C 690.297 299.207 680.457 310.205 679.681 323.624 C 679.608 324.888 679.614 326.134 679.692 327.358 C 680.2 335.221 674.396 341.861 667.176 341.861 L 633.542 341.861 C 625.669 341.861 619.291 334.872 619.329 326.267 C 619.348 322.045 621.051 318.038 623.785 315.052 L 677.905 255.967 C 685.445 247.736 695.67 243.112 706.331 243.112 L 714.365 281.318 Z "
+                                            fill="rgb(196,136,102)" />
+                                        <path
+                                            d=" M 719.83 254.085 L 709.663 254.085 L 709.663 221.168 C 715.279 221.168 719.83 226.138 719.83 232.269 L 719.83 254.085 Z "
+                                            fill="" />
+                                        <path
+                                            d=" M 832.07 374.552 L 746.037 251.727 C 742.234 246.298 736.33 243.112 730.07 243.112 L 729.998 243.112 L 706.404 243.112 L 706.332 243.112 C 705.555 243.112 704.781 243.144 704.008 243.194 C 703.924 243.199 703.839 243.208 703.755 243.215 C 703.02 243.266 702.29 243.341 701.561 243.436 C 701.513 243.443 701.464 243.449 701.414 243.456 C 692.566 244.646 684.276 249.012 677.905 255.967 L 669.58 265.057 L 705.24 265.057 C 711.501 265.057 717.404 268.242 721.207 273.671 L 746.825 310.244 C 755.391 322.473 760.032 337.439 760.032 352.833 L 760.032 352.833 C 760.032 364.953 769.031 374.778 780.132 374.778 L 780.132 374.778 C 780.132 369.28 786.522 366.918 789.581 371.285 L 800.763 387.249 L 832.07 374.552 L 832.07 374.552 Z "
+                                            fill="rgb(86,61,45)" />
+                                        <path
+                                            d=" M 831.92 374.613 L 745.844 251.727 C 742.041 246.298 736.138 243.112 729.877 243.112 L 729.805 243.112 L 706.211 243.112 L 706.139 243.112 C 705.362 243.112 704.589 243.144 703.816 243.191 C 703.732 243.197 703.648 243.206 703.563 243.212 C 702.828 243.264 702.098 243.338 701.369 243.434 C 701.321 243.441 701.272 243.447 701.222 243.454 C 694.402 244.371 687.918 247.182 682.386 251.604 L 717.367 251.604 C 723.627 251.604 729.531 254.789 733.334 260.218 L 758.951 296.791 C 763.233 302.903 766.581 314.382 768.904 324.538 C 771.572 336.205 781.243 344.342 792.258 344.342 L 792.258 344.342 L 817.545 380.443 L 831.92 374.613 L 831.92 374.613 Z "
+                                            fill="rgb(109,78,60)" />
+                                        <path
+                                            d=" M 639.429 309.625 C 639.429 321.369 630.709 330.889 619.952 330.889 L 619.952 330.889 C 619.374 328.829 619.173 326.588 619.457 324.258 C 619.879 320.777 621.463 317.588 623.736 315.106 L 639.429 297.973 L 639.429 297.973 L 639.429 309.625 Z "
+                                            fill="rgb(68,49,38)" />
+                                        <path
+                                            d=" M 694.705 276.029 C 691.93 276.029 688 278.485 688 281.515 C 688 284.544 691.93 287.001 694.705 287.001 C 697.48 287.001 703 284.544 703 281.515 C 703 278.485 697.48 276.029 694.705 276.029 Z "
+                                            fill="rgb(68,49,38)" />
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+                <div class="box box2">
+                    <span>Bold Pilot</span>
+                    <svg  xmlns:xlink="" style="isolation:isolate"
+
+                        viewBox="580 226 650 480" width="550pt" height="550pt">
+                    
+                    
+                        <defs >
+                            <clipPath id="_clipPath_9uXmbQzkhVRX5Jj2CntmbcrVqYT1fTDl">
+                                <rect x="630" y="226" width="550" height="550" />
+                            </clipPath>
+                        </defs>
+                        <g clip-path="url(#_clipPath_pvwsQttPN9lcE3z9mWP6lKXXXnzHlmOJ)" class="removeclass">
+                            <g>
+                                <g>
+                                    <!-- hind toynak -->
+                                    <g class="horse_hind2 animoff">
+                                        <path 
+                                            d=" M 944.417 493.002 L 1027.316 636.162 C 1030.058 640.899 1029.08 646.712 1025.033 649.722 L 1024.093 650.421 L 1037.061 667.861 L 1012.988 685.762 L 1010.777 675.295 C 1009.273 668.176 1011.371 661.118 1016.211 656.477 L 1016.118 656.351 L 1016.068 656.388 L 904.295 522.838 L 944.417 493.002 Z "
+                                            fill="" />
+                                        <path 
+                                            d=" M 1011.459 674.788 C 1009.784 666.857 1012.566 658.993 1018.645 654.472 L 1024.775 649.914 L 1037.743 667.354 L 1013.67 685.255 L 1011.459 674.788 Z "
+                                            fill="rgb(32,32,0)" />
+                                    </g>
+                                    <g class="horse_hind1 animoff">
+                                        <path 
+                                            d=" M 993.873 474.021 C 995.694 479.515 999.565 486.142 1007.069 494.566 L 1100.417 602.085 C 1104.707 606.197 1105.612 612.275 1102.525 616.264 L 1101.808 617.191 L 1120.486 631.644 L 1102.127 655.37 L 1096.511 645.37 C 1092.711 638.604 1092.508 631.05 1095.807 625.245 L 1095.04 624.65 L 1035.452 583.384 L 953.281 526.478 L 993.873 474.021 L 993.873 474.021 Z "
+                                            fill="" />
+                                        <path 
+                                            d=" M 1102.022 655.289 L 1120.382 631.563 L 1101.981 617.324 L 1097.306 623.366 C 1092.67 629.356 1092.369 637.881 1096.53 645.385 L 1102.022 655.289 Z "
+                                            fill="rgb(32,32,0)" />
+                                    </g>
+                                    <g class="horse_front2 animoff">
+                                        <path 
+                                            d=" M 790.187 481.076 L 864.25 630.703 C 866.7 635.653 865.36 641.421 861.122 644.156 L 860.138 644.792 L 872.032 663.223 L 846.826 679.49 L 845.264 668.823 C 844.205 661.59 846.716 654.663 851.819 650.343 L 851.819 650.343 L 851.735 650.214 L 748.176 508.189 L 790.187 481.076 Z "
+                                            fill="" />
+                                        <path 
+                                            d=" M 845.465 669.134 C 844.434 661.288 847.803 653.738 854.169 649.63 L 860.587 645.488 L 872.032 663.223 L 846.826 679.49 L 845.465 669.134 Z "
+                                            fill="rgb(32,32,0)" />
+                                    </g>
+                                    <g class="horse_front1 animoff">
+                                        <path 
+                                            d=" M 717.016 515.935 C 718.064 515.807 719.112 515.675 720.16 515.509 L 776.44 678.75 L 776.481 678.926 C 770.241 681.358 765.639 687.46 764.349 695.283 L 762.446 706.823 L 791.663 700.015 L 786.179 676.48 L 787.321 676.214 C 792.232 675.07 795.345 669.685 794.583 663.655 L 774.032 501.191 L 775.256 500.858 L 717.016 515.935 L 717.016 515.935 Z "
+                                            fill="" />
+                                        <path 
+                                            d=" M 761.436 706.577 L 790.654 699.769 L 785.17 676.235 L 777.73 677.968 C 770.353 679.687 764.781 686.295 763.339 695.038 L 761.436 706.577 Z "
+                                            fill="rgb(32,32,0)" />
+                                    </g>
+                                    <!-- tail kuyruk -->
+                                    <g class="horse_tail animoff">
+                                        <path 
+                                            d=" M 1177.163 540.799 L 1177.163 540.799 C 1153.905 564.403 1115.916 564.683 1092.313 541.425 L 1006.837 457.201 L 1006.837 457.201 C 1030.095 433.597 1068.084 433.317 1091.687 456.575 L 1177.163 540.799 Z "
+                                            fill="rgb(32,32,0)" />
+                                        <path 
+                                            d=" M 1171.431 535.152 C 1151.457 540.64 1129.186 535.641 1113.369 520.056 L 1033.625 441.479 C 1053.599 435.991 1075.87 440.99 1091.687 456.575 L 1171.431 535.152 Z "
+                                            fill="rgb(86,61,45)" />
+                                    </g>
+                                    <!-- body gövde -->
+                                    <g class="horse_body animoff">
+                                        <path
+                                            d=" M 831.624 372.815 L 847.798 393.966 C 859.528 409.305 877.922 418.061 897.223 417.493 L 975.952 415.177 C 1009.663 414.186 1036.593 440.867 1037.681 472.999 L 1037.681 473 C 1037.742 474.823 1037.731 476.66 1037.623 478.512 C 1034.632 503.114 1033 502.669 1033 502.669 C 1028.998 518.654 1020.807 519.567 1007.173 526.515 L 1007.173 526.515 L 940.845 526.515 L 940.794 525.703 L 819.215 529.388 L 759.073 530.602 L 759.073 530.602 C 718.298 531.149 707.298 533.649 706.132 465.544 C 707.544 450.012 708.067 434.423 707.701 418.852 L 831.624 372.815 L 831.624 372.815 Z "
+                                            fill="" />
+                                        <path
+                                            d=" M 970 443 L 970 443 C 958.954 443 950 451.954 950 463 L 950 473 C 950 489.569 963.431 503 980 503 L 990 503 C 1001.046 503 1010 494.046 1010 483 L 1010 483 C 1010 460.909 992.091 443 970 443 Z "
+                                            fill="rgb(196,136,102)" />
+                                        <path
+                                            d=" M 940.415 525.715 L 819.689 529.373 C 818.149 529.42 817.414 527.472 818.621 526.515 C 825.552 521.021 830 512.532 830 503 L 830 502.895 C 829.991 497.453 834.436 493 839.878 493 L 920.349 493 C 925.686 493 930.01 497.332 930.001 502.669 L 930 503 C 930 512.081 934.041 520.213 940.415 525.715 Z "
+                                            fill="rgb(147,100,68)" />
+                                        <path
+                                            d=" M 831.68 372.794 L 847.87 393.966 C 857.186 406.149 870.712 414.158 885.552 416.662 L 857.295 417.493 C 837.994 418.061 819.599 409.305 807.87 393.966 L 800.529 384.367 L 831.68 372.794 L 831.68 372.794 Z "
+                                            fill="rgb(86,61,45)" />
+                                        <path
+                                            d=" M 831.53 372.85 L 847.678 393.966 C 850.708 397.928 854.189 401.44 858.009 404.473 C 843.016 402.045 829.335 393.996 819.937 381.706 L 817.228 378.163 L 831.53 372.85 L 831.53 372.85 Z "
+                                            fill="rgb(109,78,60)" />
+                                        <path
+                                            d=" M 741.539 406.281 L 749.005 438.802 C 751.309 448.837 748.118 459.244 740.853 466.539 C 732.617 474.809 726.182 484.873 722.178 496.093 C 720.435 500.978 713.661 501.329 711.433 496.645 C 706.994 487.312 704.902 476.682 705.915 465.543 L 705.915 465.543 C 707.324 450.038 707.848 434.476 707.485 418.933 L 741.539 406.281 L 741.539 406.281 Z "
+                                            fill="rgb(147,100,68)" />
+                    
+                                    </g>
+                                    <!-- head kafa -->
+                                    <g class="horse_head animoff">
+                                        <path
+                                            d=" M 832.013 374.575 L 745.965 251.727 C 742.162 246.298 736.258 243.112 729.998 243.112 L 729.998 232.269 C 729.998 226.138 725.445 221.168 719.83 221.168 L 719.83 232.14 L 709.78 232.14 L 709.78 243.112 L 706.332 243.112 C 695.67 243.112 685.445 247.736 677.905 255.967 L 623.785 315.052 C 621.051 318.039 619.348 322.046 619.329 326.268 C 619.291 334.872 625.669 341.861 633.542 341.861 L 691.383 341.861 C 696.48 341.861 700.77 346.026 701.365 351.552 L 704.763 383.088 C 706.267 397.043 707.17 411.059 707.469 425.087 L 832.013 374.575 L 832.013 374.575 Z "
+                                            fill="" />
+                                        <path
+                                            d=" M 714.365 281.318 C 716.099 289.563 710.635 297.442 702.908 298.045 C 702.795 298.054 702.682 298.064 702.569 298.074 C 690.297 299.207 680.457 310.205 679.681 323.624 C 679.608 324.888 679.614 326.134 679.692 327.358 C 680.2 335.221 674.396 341.861 667.176 341.861 L 633.542 341.861 C 625.669 341.861 619.291 334.872 619.329 326.267 C 619.348 322.045 621.051 318.038 623.785 315.052 L 677.905 255.967 C 685.445 247.736 695.67 243.112 706.331 243.112 L 714.365 281.318 Z "
+                                            fill="rgb(196,136,102)" />
+                                        <path
+                                            d=" M 719.83 254.085 L 709.663 254.085 L 709.663 221.168 C 715.279 221.168 719.83 226.138 719.83 232.269 L 719.83 254.085 Z "
+                                            fill="" />
+                                        <path
+                                            d=" M 832.07 374.552 L 746.037 251.727 C 742.234 246.298 736.33 243.112 730.07 243.112 L 729.998 243.112 L 706.404 243.112 L 706.332 243.112 C 705.555 243.112 704.781 243.144 704.008 243.194 C 703.924 243.199 703.839 243.208 703.755 243.215 C 703.02 243.266 702.29 243.341 701.561 243.436 C 701.513 243.443 701.464 243.449 701.414 243.456 C 692.566 244.646 684.276 249.012 677.905 255.967 L 669.58 265.057 L 705.24 265.057 C 711.501 265.057 717.404 268.242 721.207 273.671 L 746.825 310.244 C 755.391 322.473 760.032 337.439 760.032 352.833 L 760.032 352.833 C 760.032 364.953 769.031 374.778 780.132 374.778 L 780.132 374.778 C 780.132 369.28 786.522 366.918 789.581 371.285 L 800.763 387.249 L 832.07 374.552 L 832.07 374.552 Z "
+                                            fill="rgb(86,61,45)" />
+                                        <path
+                                            d=" M 831.92 374.613 L 745.844 251.727 C 742.041 246.298 736.138 243.112 729.877 243.112 L 729.805 243.112 L 706.211 243.112 L 706.139 243.112 C 705.362 243.112 704.589 243.144 703.816 243.191 C 703.732 243.197 703.648 243.206 703.563 243.212 C 702.828 243.264 702.098 243.338 701.369 243.434 C 701.321 243.441 701.272 243.447 701.222 243.454 C 694.402 244.371 687.918 247.182 682.386 251.604 L 717.367 251.604 C 723.627 251.604 729.531 254.789 733.334 260.218 L 758.951 296.791 C 763.233 302.903 766.581 314.382 768.904 324.538 C 771.572 336.205 781.243 344.342 792.258 344.342 L 792.258 344.342 L 817.545 380.443 L 831.92 374.613 L 831.92 374.613 Z "
+                                            fill="rgb(109,78,60)" />
+                                        <path
+                                            d=" M 639.429 309.625 C 639.429 321.369 630.709 330.889 619.952 330.889 L 619.952 330.889 C 619.374 328.829 619.173 326.588 619.457 324.258 C 619.879 320.777 621.463 317.588 623.736 315.106 L 639.429 297.973 L 639.429 297.973 L 639.429 309.625 Z "
+                                            fill="rgb(68,49,38)" />
+                                        <path
+                                            d=" M 694.705 276.029 C 691.93 276.029 688 278.485 688 281.515 C 688 284.544 691.93 287.001 694.705 287.001 C 697.48 287.001 703 284.544 703 281.515 C 703 278.485 697.48 276.029 694.705 276.029 Z "
+                                            fill="rgb(68,49,38)" />
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                    
+                </div>
+                <div class="box box3">
+                    <span>Timurhan</span>
+                    <svg  xmlns:xlink="" style="isolation:isolate"
+                        viewBox="580 226 650 480" width="550pt" height="550pt">
+                    
+                    
+                        <defs >
+                            <clipPath id="_clipPath_9uXmbQzkhVRX5Jj2CntmbcrVqYT1fTDl">
+                                <rect x="630" y="226" width="550" height="550" />
+                            </clipPath>
+                        </defs>
+                        <g clip-path="url(#_clipPath_pvwsQttPN9lcE3z9mWP6lKXXXnzHlmOJ)" class="removeclass">
+                            <g>
+                                <g>
+                                    <!-- hind toynak -->
+                                    <g class="horse_hind2 animoff">
+                                        <path 
+                                            d=" M 944.417 493.002 L 1027.316 636.162 C 1030.058 640.899 1029.08 646.712 1025.033 649.722 L 1024.093 650.421 L 1037.061 667.861 L 1012.988 685.762 L 1010.777 675.295 C 1009.273 668.176 1011.371 661.118 1016.211 656.477 L 1016.118 656.351 L 1016.068 656.388 L 904.295 522.838 L 944.417 493.002 Z "
+                                            fill="" />
+                                        <path 
+                                            d=" M 1011.459 674.788 C 1009.784 666.857 1012.566 658.993 1018.645 654.472 L 1024.775 649.914 L 1037.743 667.354 L 1013.67 685.255 L 1011.459 674.788 Z "
+                                            fill="rgb(32,32,0)" />
+                                    </g>
+                                    <g class="horse_hind1 animoff">
+                                        <path 
+                                            d=" M 993.873 474.021 C 995.694 479.515 999.565 486.142 1007.069 494.566 L 1100.417 602.085 C 1104.707 606.197 1105.612 612.275 1102.525 616.264 L 1101.808 617.191 L 1120.486 631.644 L 1102.127 655.37 L 1096.511 645.37 C 1092.711 638.604 1092.508 631.05 1095.807 625.245 L 1095.04 624.65 L 1035.452 583.384 L 953.281 526.478 L 993.873 474.021 L 993.873 474.021 Z "
+                                            fill="" />
+                                        <path 
+                                            d=" M 1102.022 655.289 L 1120.382 631.563 L 1101.981 617.324 L 1097.306 623.366 C 1092.67 629.356 1092.369 637.881 1096.53 645.385 L 1102.022 655.289 Z "
+                                            fill="rgb(32,32,0)" />
+                                    </g>
+                                    <g class="horse_front2 animoff">
+                                        <path 
+                                            d=" M 790.187 481.076 L 864.25 630.703 C 866.7 635.653 865.36 641.421 861.122 644.156 L 860.138 644.792 L 872.032 663.223 L 846.826 679.49 L 845.264 668.823 C 844.205 661.59 846.716 654.663 851.819 650.343 L 851.819 650.343 L 851.735 650.214 L 748.176 508.189 L 790.187 481.076 Z "
+                                            fill="" />
+                                        <path 
+                                            d=" M 845.465 669.134 C 844.434 661.288 847.803 653.738 854.169 649.63 L 860.587 645.488 L 872.032 663.223 L 846.826 679.49 L 845.465 669.134 Z "
+                                            fill="rgb(32,32,0)" />
+                                    </g>
+                                    <g class="horse_front1 animoff">
+                                        <path 
+                                            d=" M 717.016 515.935 C 718.064 515.807 719.112 515.675 720.16 515.509 L 776.44 678.75 L 776.481 678.926 C 770.241 681.358 765.639 687.46 764.349 695.283 L 762.446 706.823 L 791.663 700.015 L 786.179 676.48 L 787.321 676.214 C 792.232 675.07 795.345 669.685 794.583 663.655 L 774.032 501.191 L 775.256 500.858 L 717.016 515.935 L 717.016 515.935 Z "
+                                            fill="" />
+                                        <path 
+                                            d=" M 761.436 706.577 L 790.654 699.769 L 785.17 676.235 L 777.73 677.968 C 770.353 679.687 764.781 686.295 763.339 695.038 L 761.436 706.577 Z "
+                                            fill="rgb(32,32,0)" />
+                                    </g>
+                                    <!-- tail kuyruk -->
+                                    <g class="horse_tail animoff">
+                                        <path 
+                                            d=" M 1177.163 540.799 L 1177.163 540.799 C 1153.905 564.403 1115.916 564.683 1092.313 541.425 L 1006.837 457.201 L 1006.837 457.201 C 1030.095 433.597 1068.084 433.317 1091.687 456.575 L 1177.163 540.799 Z "
+                                            fill="rgb(32,32,0)" />
+                                        <path 
+                                            d=" M 1171.431 535.152 C 1151.457 540.64 1129.186 535.641 1113.369 520.056 L 1033.625 441.479 C 1053.599 435.991 1075.87 440.99 1091.687 456.575 L 1171.431 535.152 Z "
+                                            fill="rgb(86,61,45)" />
+                                    </g>
+                                    <!-- body gövde -->
+                                    <g class="horse_body animoff">
+                                        <path
+                                            d=" M 831.624 372.815 L 847.798 393.966 C 859.528 409.305 877.922 418.061 897.223 417.493 L 975.952 415.177 C 1009.663 414.186 1036.593 440.867 1037.681 472.999 L 1037.681 473 C 1037.742 474.823 1037.731 476.66 1037.623 478.512 C 1034.632 503.114 1033 502.669 1033 502.669 C 1028.998 518.654 1020.807 519.567 1007.173 526.515 L 1007.173 526.515 L 940.845 526.515 L 940.794 525.703 L 819.215 529.388 L 759.073 530.602 L 759.073 530.602 C 718.298 531.149 707.298 533.649 706.132 465.544 C 707.544 450.012 708.067 434.423 707.701 418.852 L 831.624 372.815 L 831.624 372.815 Z "
+                                            fill="" />
+                                        <path
+                                            d=" M 970 443 L 970 443 C 958.954 443 950 451.954 950 463 L 950 473 C 950 489.569 963.431 503 980 503 L 990 503 C 1001.046 503 1010 494.046 1010 483 L 1010 483 C 1010 460.909 992.091 443 970 443 Z "
+                                            fill="rgb(196,136,102)" />
+                                        <path
+                                            d=" M 940.415 525.715 L 819.689 529.373 C 818.149 529.42 817.414 527.472 818.621 526.515 C 825.552 521.021 830 512.532 830 503 L 830 502.895 C 829.991 497.453 834.436 493 839.878 493 L 920.349 493 C 925.686 493 930.01 497.332 930.001 502.669 L 930 503 C 930 512.081 934.041 520.213 940.415 525.715 Z "
+                                            fill="rgb(147,100,68)" />
+                                        <path
+                                            d=" M 831.68 372.794 L 847.87 393.966 C 857.186 406.149 870.712 414.158 885.552 416.662 L 857.295 417.493 C 837.994 418.061 819.599 409.305 807.87 393.966 L 800.529 384.367 L 831.68 372.794 L 831.68 372.794 Z "
+                                            fill="rgb(86,61,45)" />
+                                        <path
+                                            d=" M 831.53 372.85 L 847.678 393.966 C 850.708 397.928 854.189 401.44 858.009 404.473 C 843.016 402.045 829.335 393.996 819.937 381.706 L 817.228 378.163 L 831.53 372.85 L 831.53 372.85 Z "
+                                            fill="rgb(109,78,60)" />
+                                        <path
+                                            d=" M 741.539 406.281 L 749.005 438.802 C 751.309 448.837 748.118 459.244 740.853 466.539 C 732.617 474.809 726.182 484.873 722.178 496.093 C 720.435 500.978 713.661 501.329 711.433 496.645 C 706.994 487.312 704.902 476.682 705.915 465.543 L 705.915 465.543 C 707.324 450.038 707.848 434.476 707.485 418.933 L 741.539 406.281 L 741.539 406.281 Z "
+                                            fill="rgb(147,100,68)" />
+                    
+                                    </g>
+                                    <!-- head kafa -->
+                                    <g class="horse_head animoff">
+                                        <path
+                                            d=" M 832.013 374.575 L 745.965 251.727 C 742.162 246.298 736.258 243.112 729.998 243.112 L 729.998 232.269 C 729.998 226.138 725.445 221.168 719.83 221.168 L 719.83 232.14 L 709.78 232.14 L 709.78 243.112 L 706.332 243.112 C 695.67 243.112 685.445 247.736 677.905 255.967 L 623.785 315.052 C 621.051 318.039 619.348 322.046 619.329 326.268 C 619.291 334.872 625.669 341.861 633.542 341.861 L 691.383 341.861 C 696.48 341.861 700.77 346.026 701.365 351.552 L 704.763 383.088 C 706.267 397.043 707.17 411.059 707.469 425.087 L 832.013 374.575 L 832.013 374.575 Z "
+                                            fill="" />
+                                        <path
+                                            d=" M 714.365 281.318 C 716.099 289.563 710.635 297.442 702.908 298.045 C 702.795 298.054 702.682 298.064 702.569 298.074 C 690.297 299.207 680.457 310.205 679.681 323.624 C 679.608 324.888 679.614 326.134 679.692 327.358 C 680.2 335.221 674.396 341.861 667.176 341.861 L 633.542 341.861 C 625.669 341.861 619.291 334.872 619.329 326.267 C 619.348 322.045 621.051 318.038 623.785 315.052 L 677.905 255.967 C 685.445 247.736 695.67 243.112 706.331 243.112 L 714.365 281.318 Z "
+                                            fill="rgb(196,136,102)" />
+                                        <path
+                                            d=" M 719.83 254.085 L 709.663 254.085 L 709.663 221.168 C 715.279 221.168 719.83 226.138 719.83 232.269 L 719.83 254.085 Z "
+                                            fill="" />
+                                        <path
+                                            d=" M 832.07 374.552 L 746.037 251.727 C 742.234 246.298 736.33 243.112 730.07 243.112 L 729.998 243.112 L 706.404 243.112 L 706.332 243.112 C 705.555 243.112 704.781 243.144 704.008 243.194 C 703.924 243.199 703.839 243.208 703.755 243.215 C 703.02 243.266 702.29 243.341 701.561 243.436 C 701.513 243.443 701.464 243.449 701.414 243.456 C 692.566 244.646 684.276 249.012 677.905 255.967 L 669.58 265.057 L 705.24 265.057 C 711.501 265.057 717.404 268.242 721.207 273.671 L 746.825 310.244 C 755.391 322.473 760.032 337.439 760.032 352.833 L 760.032 352.833 C 760.032 364.953 769.031 374.778 780.132 374.778 L 780.132 374.778 C 780.132 369.28 786.522 366.918 789.581 371.285 L 800.763 387.249 L 832.07 374.552 L 832.07 374.552 Z "
+                                            fill="rgb(86,61,45)" />
+                                        <path
+                                            d=" M 831.92 374.613 L 745.844 251.727 C 742.041 246.298 736.138 243.112 729.877 243.112 L 729.805 243.112 L 706.211 243.112 L 706.139 243.112 C 705.362 243.112 704.589 243.144 703.816 243.191 C 703.732 243.197 703.648 243.206 703.563 243.212 C 702.828 243.264 702.098 243.338 701.369 243.434 C 701.321 243.441 701.272 243.447 701.222 243.454 C 694.402 244.371 687.918 247.182 682.386 251.604 L 717.367 251.604 C 723.627 251.604 729.531 254.789 733.334 260.218 L 758.951 296.791 C 763.233 302.903 766.581 314.382 768.904 324.538 C 771.572 336.205 781.243 344.342 792.258 344.342 L 792.258 344.342 L 817.545 380.443 L 831.92 374.613 L 831.92 374.613 Z "
+                                            fill="rgb(109,78,60)" />
+                                        <path
+                                            d=" M 639.429 309.625 C 639.429 321.369 630.709 330.889 619.952 330.889 L 619.952 330.889 C 619.374 328.829 619.173 326.588 619.457 324.258 C 619.879 320.777 621.463 317.588 623.736 315.106 L 639.429 297.973 L 639.429 297.973 L 639.429 309.625 Z "
+                                            fill="rgb(68,49,38)" />
+                                        <path
+                                            d=" M 694.705 276.029 C 691.93 276.029 688 278.485 688 281.515 C 688 284.544 691.93 287.001 694.705 287.001 C 697.48 287.001 703 284.544 703 281.515 C 703 278.485 697.48 276.029 694.705 276.029 Z "
+                                            fill="rgb(68,49,38)" />
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+                <div class="box box4">
+                    <span>Dragon</span>
+                    <svg  xmlns:xlink="" style="isolation:isolate"
+                        viewBox="580 226 650 480" width="550pt" height="550pt">
+                    
+                    
+                        <defs >
+                            <clipPath id="_clipPath_9uXmbQzkhVRX5Jj2CntmbcrVqYT1fTDl">
+                                <rect x="630" y="226" width="550" height="550" />
+                            </clipPath>
+                        </defs>
+                        <g clip-path="url(#_clipPath_pvwsQttPN9lcE3z9mWP6lKXXXnzHlmOJ)" class="removeclass">
+                            <g>
+                                <g>
+                                    <!-- hind toynak -->
+                                    <g class="horse_hind2 animoff">
+                                        <path 
+                                            d=" M 944.417 493.002 L 1027.316 636.162 C 1030.058 640.899 1029.08 646.712 1025.033 649.722 L 1024.093 650.421 L 1037.061 667.861 L 1012.988 685.762 L 1010.777 675.295 C 1009.273 668.176 1011.371 661.118 1016.211 656.477 L 1016.118 656.351 L 1016.068 656.388 L 904.295 522.838 L 944.417 493.002 Z "
+                                            fill="" />
+                                        <path 
+                                            d=" M 1011.459 674.788 C 1009.784 666.857 1012.566 658.993 1018.645 654.472 L 1024.775 649.914 L 1037.743 667.354 L 1013.67 685.255 L 1011.459 674.788 Z "
+                                            fill="rgb(32,32,0)" />
+                                    </g>
+                                    <g class="horse_hind1 animoff">
+                                        <path 
+                                            d=" M 993.873 474.021 C 995.694 479.515 999.565 486.142 1007.069 494.566 L 1100.417 602.085 C 1104.707 606.197 1105.612 612.275 1102.525 616.264 L 1101.808 617.191 L 1120.486 631.644 L 1102.127 655.37 L 1096.511 645.37 C 1092.711 638.604 1092.508 631.05 1095.807 625.245 L 1095.04 624.65 L 1035.452 583.384 L 953.281 526.478 L 993.873 474.021 L 993.873 474.021 Z "
+                                            fill="" />
+                                        <path 
+                                            d=" M 1102.022 655.289 L 1120.382 631.563 L 1101.981 617.324 L 1097.306 623.366 C 1092.67 629.356 1092.369 637.881 1096.53 645.385 L 1102.022 655.289 Z "
+                                            fill="rgb(32,32,0)" />
+                                    </g>
+                                    <g class="horse_front2 animoff">
+                                        <path 
+                                            d=" M 790.187 481.076 L 864.25 630.703 C 866.7 635.653 865.36 641.421 861.122 644.156 L 860.138 644.792 L 872.032 663.223 L 846.826 679.49 L 845.264 668.823 C 844.205 661.59 846.716 654.663 851.819 650.343 L 851.819 650.343 L 851.735 650.214 L 748.176 508.189 L 790.187 481.076 Z "
+                                            fill="" />
+                                        <path 
+                                            d=" M 845.465 669.134 C 844.434 661.288 847.803 653.738 854.169 649.63 L 860.587 645.488 L 872.032 663.223 L 846.826 679.49 L 845.465 669.134 Z "
+                                            fill="rgb(32,32,0)" />
+                                    </g>
+                                    <g class="horse_front1 animoff">
+                                        <path 
+                                            d=" M 717.016 515.935 C 718.064 515.807 719.112 515.675 720.16 515.509 L 776.44 678.75 L 776.481 678.926 C 770.241 681.358 765.639 687.46 764.349 695.283 L 762.446 706.823 L 791.663 700.015 L 786.179 676.48 L 787.321 676.214 C 792.232 675.07 795.345 669.685 794.583 663.655 L 774.032 501.191 L 775.256 500.858 L 717.016 515.935 L 717.016 515.935 Z "
+                                            fill="" />
+                                        <path 
+                                            d=" M 761.436 706.577 L 790.654 699.769 L 785.17 676.235 L 777.73 677.968 C 770.353 679.687 764.781 686.295 763.339 695.038 L 761.436 706.577 Z "
+                                            fill="rgb(32,32,0)" />
+                                    </g>
+                                    <!-- tail kuyruk -->
+                                    <g class="horse_tail animoff">
+                                        <path 
+                                            d=" M 1177.163 540.799 L 1177.163 540.799 C 1153.905 564.403 1115.916 564.683 1092.313 541.425 L 1006.837 457.201 L 1006.837 457.201 C 1030.095 433.597 1068.084 433.317 1091.687 456.575 L 1177.163 540.799 Z "
+                                            fill="rgb(32,32,0)" />
+                                        <path 
+                                            d=" M 1171.431 535.152 C 1151.457 540.64 1129.186 535.641 1113.369 520.056 L 1033.625 441.479 C 1053.599 435.991 1075.87 440.99 1091.687 456.575 L 1171.431 535.152 Z "
+                                            fill="rgb(86,61,45)" />
+                                    </g>
+                                    <!-- body gövde -->
+                                    <g class="horse_body animoff">
+                                        <path
+                                            d=" M 831.624 372.815 L 847.798 393.966 C 859.528 409.305 877.922 418.061 897.223 417.493 L 975.952 415.177 C 1009.663 414.186 1036.593 440.867 1037.681 472.999 L 1037.681 473 C 1037.742 474.823 1037.731 476.66 1037.623 478.512 C 1034.632 503.114 1033 502.669 1033 502.669 C 1028.998 518.654 1020.807 519.567 1007.173 526.515 L 1007.173 526.515 L 940.845 526.515 L 940.794 525.703 L 819.215 529.388 L 759.073 530.602 L 759.073 530.602 C 718.298 531.149 707.298 533.649 706.132 465.544 C 707.544 450.012 708.067 434.423 707.701 418.852 L 831.624 372.815 L 831.624 372.815 Z "
+                                            fill="" />
+                                        <path
+                                            d=" M 970 443 L 970 443 C 958.954 443 950 451.954 950 463 L 950 473 C 950 489.569 963.431 503 980 503 L 990 503 C 1001.046 503 1010 494.046 1010 483 L 1010 483 C 1010 460.909 992.091 443 970 443 Z "
+                                            fill="rgb(196,136,102)" />
+                                        <path
+                                            d=" M 940.415 525.715 L 819.689 529.373 C 818.149 529.42 817.414 527.472 818.621 526.515 C 825.552 521.021 830 512.532 830 503 L 830 502.895 C 829.991 497.453 834.436 493 839.878 493 L 920.349 493 C 925.686 493 930.01 497.332 930.001 502.669 L 930 503 C 930 512.081 934.041 520.213 940.415 525.715 Z "
+                                            fill="rgb(147,100,68)" />
+                                        <path
+                                            d=" M 831.68 372.794 L 847.87 393.966 C 857.186 406.149 870.712 414.158 885.552 416.662 L 857.295 417.493 C 837.994 418.061 819.599 409.305 807.87 393.966 L 800.529 384.367 L 831.68 372.794 L 831.68 372.794 Z "
+                                            fill="rgb(86,61,45)" />
+                                        <path
+                                            d=" M 831.53 372.85 L 847.678 393.966 C 850.708 397.928 854.189 401.44 858.009 404.473 C 843.016 402.045 829.335 393.996 819.937 381.706 L 817.228 378.163 L 831.53 372.85 L 831.53 372.85 Z "
+                                            fill="rgb(109,78,60)" />
+                                        <path
+                                            d=" M 741.539 406.281 L 749.005 438.802 C 751.309 448.837 748.118 459.244 740.853 466.539 C 732.617 474.809 726.182 484.873 722.178 496.093 C 720.435 500.978 713.661 501.329 711.433 496.645 C 706.994 487.312 704.902 476.682 705.915 465.543 L 705.915 465.543 C 707.324 450.038 707.848 434.476 707.485 418.933 L 741.539 406.281 L 741.539 406.281 Z "
+                                            fill="rgb(147,100,68)" />
+                    
+                                    </g>
+                                    <!-- head kafa -->
+                                    <g class="horse_head animoff">
+                                        <path
+                                            d=" M 832.013 374.575 L 745.965 251.727 C 742.162 246.298 736.258 243.112 729.998 243.112 L 729.998 232.269 C 729.998 226.138 725.445 221.168 719.83 221.168 L 719.83 232.14 L 709.78 232.14 L 709.78 243.112 L 706.332 243.112 C 695.67 243.112 685.445 247.736 677.905 255.967 L 623.785 315.052 C 621.051 318.039 619.348 322.046 619.329 326.268 C 619.291 334.872 625.669 341.861 633.542 341.861 L 691.383 341.861 C 696.48 341.861 700.77 346.026 701.365 351.552 L 704.763 383.088 C 706.267 397.043 707.17 411.059 707.469 425.087 L 832.013 374.575 L 832.013 374.575 Z "
+                                            fill="" />
+                                        <path
+                                            d=" M 714.365 281.318 C 716.099 289.563 710.635 297.442 702.908 298.045 C 702.795 298.054 702.682 298.064 702.569 298.074 C 690.297 299.207 680.457 310.205 679.681 323.624 C 679.608 324.888 679.614 326.134 679.692 327.358 C 680.2 335.221 674.396 341.861 667.176 341.861 L 633.542 341.861 C 625.669 341.861 619.291 334.872 619.329 326.267 C 619.348 322.045 621.051 318.038 623.785 315.052 L 677.905 255.967 C 685.445 247.736 695.67 243.112 706.331 243.112 L 714.365 281.318 Z "
+                                            fill="rgb(196,136,102)" />
+                                        <path
+                                            d=" M 719.83 254.085 L 709.663 254.085 L 709.663 221.168 C 715.279 221.168 719.83 226.138 719.83 232.269 L 719.83 254.085 Z "
+                                            fill="" />
+                                        <path
+                                            d=" M 832.07 374.552 L 746.037 251.727 C 742.234 246.298 736.33 243.112 730.07 243.112 L 729.998 243.112 L 706.404 243.112 L 706.332 243.112 C 705.555 243.112 704.781 243.144 704.008 243.194 C 703.924 243.199 703.839 243.208 703.755 243.215 C 703.02 243.266 702.29 243.341 701.561 243.436 C 701.513 243.443 701.464 243.449 701.414 243.456 C 692.566 244.646 684.276 249.012 677.905 255.967 L 669.58 265.057 L 705.24 265.057 C 711.501 265.057 717.404 268.242 721.207 273.671 L 746.825 310.244 C 755.391 322.473 760.032 337.439 760.032 352.833 L 760.032 352.833 C 760.032 364.953 769.031 374.778 780.132 374.778 L 780.132 374.778 C 780.132 369.28 786.522 366.918 789.581 371.285 L 800.763 387.249 L 832.07 374.552 L 832.07 374.552 Z "
+                                            fill="rgb(86,61,45)" />
+                                        <path
+                                            d=" M 831.92 374.613 L 745.844 251.727 C 742.041 246.298 736.138 243.112 729.877 243.112 L 729.805 243.112 L 706.211 243.112 L 706.139 243.112 C 705.362 243.112 704.589 243.144 703.816 243.191 C 703.732 243.197 703.648 243.206 703.563 243.212 C 702.828 243.264 702.098 243.338 701.369 243.434 C 701.321 243.441 701.272 243.447 701.222 243.454 C 694.402 244.371 687.918 247.182 682.386 251.604 L 717.367 251.604 C 723.627 251.604 729.531 254.789 733.334 260.218 L 758.951 296.791 C 763.233 302.903 766.581 314.382 768.904 324.538 C 771.572 336.205 781.243 344.342 792.258 344.342 L 792.258 344.342 L 817.545 380.443 L 831.92 374.613 L 831.92 374.613 Z "
+                                            fill="rgb(109,78,60)" />
+                                        <path
+                                            d=" M 639.429 309.625 C 639.429 321.369 630.709 330.889 619.952 330.889 L 619.952 330.889 C 619.374 328.829 619.173 326.588 619.457 324.258 C 619.879 320.777 621.463 317.588 623.736 315.106 L 639.429 297.973 L 639.429 297.973 L 639.429 309.625 Z "
+                                            fill="rgb(68,49,38)" />
+                                        <path
+                                            d=" M 694.705 276.029 C 691.93 276.029 688 278.485 688 281.515 C 688 284.544 691.93 287.001 694.705 287.001 C 697.48 287.001 703 284.544 703 281.515 C 703 278.485 697.48 276.029 694.705 276.029 Z "
+                                            fill="rgb(68,49,38)" />
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+                <div class="box box5">
+                    <span>Damista</span>
+                    <svg  xmlns:xlink="" style="isolation:isolate"
+                        viewBox="580 226 650 480" width="550pt" height="550pt">
+                    
+                    
+                        <defs >
+                            <clipPath id="_clipPath_9uXmbQzkhVRX5Jj2CntmbcrVqYT1fTDl">
+                                <rect x="630" y="226" width="550" height="550" />
+                            </clipPath>
+                        </defs>
+                        <g clip-path="url(#_clipPath_pvwsQttPN9lcE3z9mWP6lKXXXnzHlmOJ)" class="removeclass">
+                            <g>
+                                <g>
+                                    <!-- hind toynak -->
+                                    <g class="horse_hind2 animoff">
+                                        <path 
+                                            d=" M 944.417 493.002 L 1027.316 636.162 C 1030.058 640.899 1029.08 646.712 1025.033 649.722 L 1024.093 650.421 L 1037.061 667.861 L 1012.988 685.762 L 1010.777 675.295 C 1009.273 668.176 1011.371 661.118 1016.211 656.477 L 1016.118 656.351 L 1016.068 656.388 L 904.295 522.838 L 944.417 493.002 Z "
+                                            fill="" />
+                                        <path 
+                                            d=" M 1011.459 674.788 C 1009.784 666.857 1012.566 658.993 1018.645 654.472 L 1024.775 649.914 L 1037.743 667.354 L 1013.67 685.255 L 1011.459 674.788 Z "
+                                            fill="rgb(32,32,0)" />
+                                    </g>
+                                    <g class="horse_hind1 animoff">
+                                        <path 
+                                            d=" M 993.873 474.021 C 995.694 479.515 999.565 486.142 1007.069 494.566 L 1100.417 602.085 C 1104.707 606.197 1105.612 612.275 1102.525 616.264 L 1101.808 617.191 L 1120.486 631.644 L 1102.127 655.37 L 1096.511 645.37 C 1092.711 638.604 1092.508 631.05 1095.807 625.245 L 1095.04 624.65 L 1035.452 583.384 L 953.281 526.478 L 993.873 474.021 L 993.873 474.021 Z "
+                                            fill="" />
+                                        <path 
+                                            d=" M 1102.022 655.289 L 1120.382 631.563 L 1101.981 617.324 L 1097.306 623.366 C 1092.67 629.356 1092.369 637.881 1096.53 645.385 L 1102.022 655.289 Z "
+                                            fill="rgb(32,32,0)" />
+                                    </g>
+                                    <g class="horse_front2 animoff">
+                                        <path 
+                                            d=" M 790.187 481.076 L 864.25 630.703 C 866.7 635.653 865.36 641.421 861.122 644.156 L 860.138 644.792 L 872.032 663.223 L 846.826 679.49 L 845.264 668.823 C 844.205 661.59 846.716 654.663 851.819 650.343 L 851.819 650.343 L 851.735 650.214 L 748.176 508.189 L 790.187 481.076 Z "
+                                            fill="" />
+                                        <path 
+                                            d=" M 845.465 669.134 C 844.434 661.288 847.803 653.738 854.169 649.63 L 860.587 645.488 L 872.032 663.223 L 846.826 679.49 L 845.465 669.134 Z "
+                                            fill="rgb(32,32,0)" />
+                                    </g>
+                                    <g class="horse_front1 animoff">
+                                        <path 
+                                            d=" M 717.016 515.935 C 718.064 515.807 719.112 515.675 720.16 515.509 L 776.44 678.75 L 776.481 678.926 C 770.241 681.358 765.639 687.46 764.349 695.283 L 762.446 706.823 L 791.663 700.015 L 786.179 676.48 L 787.321 676.214 C 792.232 675.07 795.345 669.685 794.583 663.655 L 774.032 501.191 L 775.256 500.858 L 717.016 515.935 L 717.016 515.935 Z "
+                                            fill="" />
+                                        <path 
+                                            d=" M 761.436 706.577 L 790.654 699.769 L 785.17 676.235 L 777.73 677.968 C 770.353 679.687 764.781 686.295 763.339 695.038 L 761.436 706.577 Z "
+                                            fill="rgb(32,32,0)" />
+                                    </g>
+                                    <!-- tail kuyruk -->
+                                    <g class="horse_tail animoff">
+                                        <path 
+                                            d=" M 1177.163 540.799 L 1177.163 540.799 C 1153.905 564.403 1115.916 564.683 1092.313 541.425 L 1006.837 457.201 L 1006.837 457.201 C 1030.095 433.597 1068.084 433.317 1091.687 456.575 L 1177.163 540.799 Z "
+                                            fill="rgb(32,32,0)" />
+                                        <path 
+                                            d=" M 1171.431 535.152 C 1151.457 540.64 1129.186 535.641 1113.369 520.056 L 1033.625 441.479 C 1053.599 435.991 1075.87 440.99 1091.687 456.575 L 1171.431 535.152 Z "
+                                            fill="rgb(86,61,45)" />
+                                    </g>
+                                    <!-- body gövde -->
+                                    <g class="horse_body animoff">
+                                        <path
+                                            d=" M 831.624 372.815 L 847.798 393.966 C 859.528 409.305 877.922 418.061 897.223 417.493 L 975.952 415.177 C 1009.663 414.186 1036.593 440.867 1037.681 472.999 L 1037.681 473 C 1037.742 474.823 1037.731 476.66 1037.623 478.512 C 1034.632 503.114 1033 502.669 1033 502.669 C 1028.998 518.654 1020.807 519.567 1007.173 526.515 L 1007.173 526.515 L 940.845 526.515 L 940.794 525.703 L 819.215 529.388 L 759.073 530.602 L 759.073 530.602 C 718.298 531.149 707.298 533.649 706.132 465.544 C 707.544 450.012 708.067 434.423 707.701 418.852 L 831.624 372.815 L 831.624 372.815 Z "
+                                            fill="" />
+                                        <path
+                                            d=" M 970 443 L 970 443 C 958.954 443 950 451.954 950 463 L 950 473 C 950 489.569 963.431 503 980 503 L 990 503 C 1001.046 503 1010 494.046 1010 483 L 1010 483 C 1010 460.909 992.091 443 970 443 Z "
+                                            fill="rgb(196,136,102)" />
+                                        <path
+                                            d=" M 940.415 525.715 L 819.689 529.373 C 818.149 529.42 817.414 527.472 818.621 526.515 C 825.552 521.021 830 512.532 830 503 L 830 502.895 C 829.991 497.453 834.436 493 839.878 493 L 920.349 493 C 925.686 493 930.01 497.332 930.001 502.669 L 930 503 C 930 512.081 934.041 520.213 940.415 525.715 Z "
+                                            fill="rgb(147,100,68)" />
+                                        <path
+                                            d=" M 831.68 372.794 L 847.87 393.966 C 857.186 406.149 870.712 414.158 885.552 416.662 L 857.295 417.493 C 837.994 418.061 819.599 409.305 807.87 393.966 L 800.529 384.367 L 831.68 372.794 L 831.68 372.794 Z "
+                                            fill="rgb(86,61,45)" />
+                                        <path
+                                            d=" M 831.53 372.85 L 847.678 393.966 C 850.708 397.928 854.189 401.44 858.009 404.473 C 843.016 402.045 829.335 393.996 819.937 381.706 L 817.228 378.163 L 831.53 372.85 L 831.53 372.85 Z "
+                                            fill="rgb(109,78,60)" />
+                                        <path
+                                            d=" M 741.539 406.281 L 749.005 438.802 C 751.309 448.837 748.118 459.244 740.853 466.539 C 732.617 474.809 726.182 484.873 722.178 496.093 C 720.435 500.978 713.661 501.329 711.433 496.645 C 706.994 487.312 704.902 476.682 705.915 465.543 L 705.915 465.543 C 707.324 450.038 707.848 434.476 707.485 418.933 L 741.539 406.281 L 741.539 406.281 Z "
+                                            fill="rgb(147,100,68)" />
+                    
+                                    </g>
+                                    <!-- head kafa -->
+                                    <g class="horse_head animoff">
+                                        <path
+                                            d=" M 832.013 374.575 L 745.965 251.727 C 742.162 246.298 736.258 243.112 729.998 243.112 L 729.998 232.269 C 729.998 226.138 725.445 221.168 719.83 221.168 L 719.83 232.14 L 709.78 232.14 L 709.78 243.112 L 706.332 243.112 C 695.67 243.112 685.445 247.736 677.905 255.967 L 623.785 315.052 C 621.051 318.039 619.348 322.046 619.329 326.268 C 619.291 334.872 625.669 341.861 633.542 341.861 L 691.383 341.861 C 696.48 341.861 700.77 346.026 701.365 351.552 L 704.763 383.088 C 706.267 397.043 707.17 411.059 707.469 425.087 L 832.013 374.575 L 832.013 374.575 Z "
+                                            fill="" />
+                                        <path
+                                            d=" M 714.365 281.318 C 716.099 289.563 710.635 297.442 702.908 298.045 C 702.795 298.054 702.682 298.064 702.569 298.074 C 690.297 299.207 680.457 310.205 679.681 323.624 C 679.608 324.888 679.614 326.134 679.692 327.358 C 680.2 335.221 674.396 341.861 667.176 341.861 L 633.542 341.861 C 625.669 341.861 619.291 334.872 619.329 326.267 C 619.348 322.045 621.051 318.038 623.785 315.052 L 677.905 255.967 C 685.445 247.736 695.67 243.112 706.331 243.112 L 714.365 281.318 Z "
+                                            fill="rgb(196,136,102)" />
+                                        <path
+                                            d=" M 719.83 254.085 L 709.663 254.085 L 709.663 221.168 C 715.279 221.168 719.83 226.138 719.83 232.269 L 719.83 254.085 Z "
+                                            fill="" />
+                                        <path
+                                            d=" M 832.07 374.552 L 746.037 251.727 C 742.234 246.298 736.33 243.112 730.07 243.112 L 729.998 243.112 L 706.404 243.112 L 706.332 243.112 C 705.555 243.112 704.781 243.144 704.008 243.194 C 703.924 243.199 703.839 243.208 703.755 243.215 C 703.02 243.266 702.29 243.341 701.561 243.436 C 701.513 243.443 701.464 243.449 701.414 243.456 C 692.566 244.646 684.276 249.012 677.905 255.967 L 669.58 265.057 L 705.24 265.057 C 711.501 265.057 717.404 268.242 721.207 273.671 L 746.825 310.244 C 755.391 322.473 760.032 337.439 760.032 352.833 L 760.032 352.833 C 760.032 364.953 769.031 374.778 780.132 374.778 L 780.132 374.778 C 780.132 369.28 786.522 366.918 789.581 371.285 L 800.763 387.249 L 832.07 374.552 L 832.07 374.552 Z "
+                                            fill="rgb(86,61,45)" />
+                                        <path
+                                            d=" M 831.92 374.613 L 745.844 251.727 C 742.041 246.298 736.138 243.112 729.877 243.112 L 729.805 243.112 L 706.211 243.112 L 706.139 243.112 C 705.362 243.112 704.589 243.144 703.816 243.191 C 703.732 243.197 703.648 243.206 703.563 243.212 C 702.828 243.264 702.098 243.338 701.369 243.434 C 701.321 243.441 701.272 243.447 701.222 243.454 C 694.402 244.371 687.918 247.182 682.386 251.604 L 717.367 251.604 C 723.627 251.604 729.531 254.789 733.334 260.218 L 758.951 296.791 C 763.233 302.903 766.581 314.382 768.904 324.538 C 771.572 336.205 781.243 344.342 792.258 344.342 L 792.258 344.342 L 817.545 380.443 L 831.92 374.613 L 831.92 374.613 Z "
+                                            fill="rgb(109,78,60)" />
+                                        <path
+                                            d=" M 639.429 309.625 C 639.429 321.369 630.709 330.889 619.952 330.889 L 619.952 330.889 C 619.374 328.829 619.173 326.588 619.457 324.258 C 619.879 320.777 621.463 317.588 623.736 315.106 L 639.429 297.973 L 639.429 297.973 L 639.429 309.625 Z "
+                                            fill="rgb(68,49,38)" />
+                                        <path
+                                            d=" M 694.705 276.029 C 691.93 276.029 688 278.485 688 281.515 C 688 284.544 691.93 287.001 694.705 287.001 C 697.48 287.001 703 284.544 703 281.515 C 703 278.485 697.48 276.029 694.705 276.029 Z "
+                                            fill="rgb(68,49,38)" />
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+                <div class="box box6">
+                    <span>Velociraptor</span>
+                    <svg  xmlns:xlink="" style="isolation:isolate"
+                        viewBox="580 226 650 480" width="550pt" height="550pt">
+                    
+                    
+                        <defs >
+                            <clipPath id="_clipPath_9uXmbQzkhVRX5Jj2CntmbcrVqYT1fTDl">
+                                <rect x="630" y="226" width="550" height="550" />
+                            </clipPath>
+                        </defs>
+                        <g clip-path="url(#_clipPath_pvwsQttPN9lcE3z9mWP6lKXXXnzHlmOJ)" class="removeclass">
+                            <g>
+                                <g>
+                                    <!-- hind toynak -->
+                                    <g class="horse_hind2 animoff">
+                                        <path 
+                                            d=" M 944.417 493.002 L 1027.316 636.162 C 1030.058 640.899 1029.08 646.712 1025.033 649.722 L 1024.093 650.421 L 1037.061 667.861 L 1012.988 685.762 L 1010.777 675.295 C 1009.273 668.176 1011.371 661.118 1016.211 656.477 L 1016.118 656.351 L 1016.068 656.388 L 904.295 522.838 L 944.417 493.002 Z "
+                                            fill="" />
+                                        <path 
+                                            d=" M 1011.459 674.788 C 1009.784 666.857 1012.566 658.993 1018.645 654.472 L 1024.775 649.914 L 1037.743 667.354 L 1013.67 685.255 L 1011.459 674.788 Z "
+                                            fill="rgb(32,32,0)" />
+                                    </g>
+                                    <g class="horse_hind1 animoff">
+                                        <path 
+                                            d=" M 993.873 474.021 C 995.694 479.515 999.565 486.142 1007.069 494.566 L 1100.417 602.085 C 1104.707 606.197 1105.612 612.275 1102.525 616.264 L 1101.808 617.191 L 1120.486 631.644 L 1102.127 655.37 L 1096.511 645.37 C 1092.711 638.604 1092.508 631.05 1095.807 625.245 L 1095.04 624.65 L 1035.452 583.384 L 953.281 526.478 L 993.873 474.021 L 993.873 474.021 Z "
+                                            fill="" />
+                                        <path 
+                                            d=" M 1102.022 655.289 L 1120.382 631.563 L 1101.981 617.324 L 1097.306 623.366 C 1092.67 629.356 1092.369 637.881 1096.53 645.385 L 1102.022 655.289 Z "
+                                            fill="rgb(32,32,0)" />
+                                    </g>
+                                    <g class="horse_front2 animoff">
+                                        <path 
+                                            d=" M 790.187 481.076 L 864.25 630.703 C 866.7 635.653 865.36 641.421 861.122 644.156 L 860.138 644.792 L 872.032 663.223 L 846.826 679.49 L 845.264 668.823 C 844.205 661.59 846.716 654.663 851.819 650.343 L 851.819 650.343 L 851.735 650.214 L 748.176 508.189 L 790.187 481.076 Z "
+                                            fill="" />
+                                        <path 
+                                            d=" M 845.465 669.134 C 844.434 661.288 847.803 653.738 854.169 649.63 L 860.587 645.488 L 872.032 663.223 L 846.826 679.49 L 845.465 669.134 Z "
+                                            fill="rgb(32,32,0)" />
+                                    </g>
+                                    <g class="horse_front1 animoff">
+                                        <path 
+                                            d=" M 717.016 515.935 C 718.064 515.807 719.112 515.675 720.16 515.509 L 776.44 678.75 L 776.481 678.926 C 770.241 681.358 765.639 687.46 764.349 695.283 L 762.446 706.823 L 791.663 700.015 L 786.179 676.48 L 787.321 676.214 C 792.232 675.07 795.345 669.685 794.583 663.655 L 774.032 501.191 L 775.256 500.858 L 717.016 515.935 L 717.016 515.935 Z "
+                                            fill="" />
+                                        <path 
+                                            d=" M 761.436 706.577 L 790.654 699.769 L 785.17 676.235 L 777.73 677.968 C 770.353 679.687 764.781 686.295 763.339 695.038 L 761.436 706.577 Z "
+                                            fill="rgb(32,32,0)" />
+                                    </g>
+                                    <!-- tail kuyruk -->
+                                    <g class="horse_tail animoff">
+                                        <path 
+                                            d=" M 1177.163 540.799 L 1177.163 540.799 C 1153.905 564.403 1115.916 564.683 1092.313 541.425 L 1006.837 457.201 L 1006.837 457.201 C 1030.095 433.597 1068.084 433.317 1091.687 456.575 L 1177.163 540.799 Z "
+                                            fill="rgb(32,32,0)" />
+                                        <path 
+                                            d=" M 1171.431 535.152 C 1151.457 540.64 1129.186 535.641 1113.369 520.056 L 1033.625 441.479 C 1053.599 435.991 1075.87 440.99 1091.687 456.575 L 1171.431 535.152 Z "
+                                            fill="rgb(86,61,45)" />
+                                    </g>
+                                    <!-- body gövde -->
+                                    <g class="horse_body animoff">
+                                        <path
+                                            d=" M 831.624 372.815 L 847.798 393.966 C 859.528 409.305 877.922 418.061 897.223 417.493 L 975.952 415.177 C 1009.663 414.186 1036.593 440.867 1037.681 472.999 L 1037.681 473 C 1037.742 474.823 1037.731 476.66 1037.623 478.512 C 1034.632 503.114 1033 502.669 1033 502.669 C 1028.998 518.654 1020.807 519.567 1007.173 526.515 L 1007.173 526.515 L 940.845 526.515 L 940.794 525.703 L 819.215 529.388 L 759.073 530.602 L 759.073 530.602 C 718.298 531.149 707.298 533.649 706.132 465.544 C 707.544 450.012 708.067 434.423 707.701 418.852 L 831.624 372.815 L 831.624 372.815 Z "
+                                            fill="" />
+                                        <path
+                                            d=" M 970 443 L 970 443 C 958.954 443 950 451.954 950 463 L 950 473 C 950 489.569 963.431 503 980 503 L 990 503 C 1001.046 503 1010 494.046 1010 483 L 1010 483 C 1010 460.909 992.091 443 970 443 Z "
+                                            fill="rgb(196,136,102)" />
+                                        <path
+                                            d=" M 940.415 525.715 L 819.689 529.373 C 818.149 529.42 817.414 527.472 818.621 526.515 C 825.552 521.021 830 512.532 830 503 L 830 502.895 C 829.991 497.453 834.436 493 839.878 493 L 920.349 493 C 925.686 493 930.01 497.332 930.001 502.669 L 930 503 C 930 512.081 934.041 520.213 940.415 525.715 Z "
+                                            fill="rgb(147,100,68)" />
+                                        <path
+                                            d=" M 831.68 372.794 L 847.87 393.966 C 857.186 406.149 870.712 414.158 885.552 416.662 L 857.295 417.493 C 837.994 418.061 819.599 409.305 807.87 393.966 L 800.529 384.367 L 831.68 372.794 L 831.68 372.794 Z "
+                                            fill="rgb(86,61,45)" />
+                                        <path
+                                            d=" M 831.53 372.85 L 847.678 393.966 C 850.708 397.928 854.189 401.44 858.009 404.473 C 843.016 402.045 829.335 393.996 819.937 381.706 L 817.228 378.163 L 831.53 372.85 L 831.53 372.85 Z "
+                                            fill="rgb(109,78,60)" />
+                                        <path
+                                            d=" M 741.539 406.281 L 749.005 438.802 C 751.309 448.837 748.118 459.244 740.853 466.539 C 732.617 474.809 726.182 484.873 722.178 496.093 C 720.435 500.978 713.661 501.329 711.433 496.645 C 706.994 487.312 704.902 476.682 705.915 465.543 L 705.915 465.543 C 707.324 450.038 707.848 434.476 707.485 418.933 L 741.539 406.281 L 741.539 406.281 Z "
+                                            fill="rgb(147,100,68)" />
+                    
+                                    </g>
+                                    <!-- head kafa -->
+                                    <g class="horse_head animoff">
+                                        <path
+                                            d=" M 832.013 374.575 L 745.965 251.727 C 742.162 246.298 736.258 243.112 729.998 243.112 L 729.998 232.269 C 729.998 226.138 725.445 221.168 719.83 221.168 L 719.83 232.14 L 709.78 232.14 L 709.78 243.112 L 706.332 243.112 C 695.67 243.112 685.445 247.736 677.905 255.967 L 623.785 315.052 C 621.051 318.039 619.348 322.046 619.329 326.268 C 619.291 334.872 625.669 341.861 633.542 341.861 L 691.383 341.861 C 696.48 341.861 700.77 346.026 701.365 351.552 L 704.763 383.088 C 706.267 397.043 707.17 411.059 707.469 425.087 L 832.013 374.575 L 832.013 374.575 Z "
+                                            fill="" />
+                                        <path
+                                            d=" M 714.365 281.318 C 716.099 289.563 710.635 297.442 702.908 298.045 C 702.795 298.054 702.682 298.064 702.569 298.074 C 690.297 299.207 680.457 310.205 679.681 323.624 C 679.608 324.888 679.614 326.134 679.692 327.358 C 680.2 335.221 674.396 341.861 667.176 341.861 L 633.542 341.861 C 625.669 341.861 619.291 334.872 619.329 326.267 C 619.348 322.045 621.051 318.038 623.785 315.052 L 677.905 255.967 C 685.445 247.736 695.67 243.112 706.331 243.112 L 714.365 281.318 Z "
+                                            fill="rgb(196,136,102)" />
+                                        <path
+                                            d=" M 719.83 254.085 L 709.663 254.085 L 709.663 221.168 C 715.279 221.168 719.83 226.138 719.83 232.269 L 719.83 254.085 Z "
+                                            fill="" />
+                                        <path
+                                            d=" M 832.07 374.552 L 746.037 251.727 C 742.234 246.298 736.33 243.112 730.07 243.112 L 729.998 243.112 L 706.404 243.112 L 706.332 243.112 C 705.555 243.112 704.781 243.144 704.008 243.194 C 703.924 243.199 703.839 243.208 703.755 243.215 C 703.02 243.266 702.29 243.341 701.561 243.436 C 701.513 243.443 701.464 243.449 701.414 243.456 C 692.566 244.646 684.276 249.012 677.905 255.967 L 669.58 265.057 L 705.24 265.057 C 711.501 265.057 717.404 268.242 721.207 273.671 L 746.825 310.244 C 755.391 322.473 760.032 337.439 760.032 352.833 L 760.032 352.833 C 760.032 364.953 769.031 374.778 780.132 374.778 L 780.132 374.778 C 780.132 369.28 786.522 366.918 789.581 371.285 L 800.763 387.249 L 832.07 374.552 L 832.07 374.552 Z "
+                                            fill="rgb(86,61,45)" />
+                                        <path
+                                            d=" M 831.92 374.613 L 745.844 251.727 C 742.041 246.298 736.138 243.112 729.877 243.112 L 729.805 243.112 L 706.211 243.112 L 706.139 243.112 C 705.362 243.112 704.589 243.144 703.816 243.191 C 703.732 243.197 703.648 243.206 703.563 243.212 C 702.828 243.264 702.098 243.338 701.369 243.434 C 701.321 243.441 701.272 243.447 701.222 243.454 C 694.402 244.371 687.918 247.182 682.386 251.604 L 717.367 251.604 C 723.627 251.604 729.531 254.789 733.334 260.218 L 758.951 296.791 C 763.233 302.903 766.581 314.382 768.904 324.538 C 771.572 336.205 781.243 344.342 792.258 344.342 L 792.258 344.342 L 817.545 380.443 L 831.92 374.613 L 831.92 374.613 Z "
+                                            fill="rgb(109,78,60)" />
+                                        <path
+                                            d=" M 639.429 309.625 C 639.429 321.369 630.709 330.889 619.952 330.889 L 619.952 330.889 C 619.374 328.829 619.173 326.588 619.457 324.258 C 619.879 320.777 621.463 317.588 623.736 315.106 L 639.429 297.973 L 639.429 297.973 L 639.429 309.625 Z "
+                                            fill="rgb(68,49,38)" />
+                                        <path
+                                            d=" M 694.705 276.029 C 691.93 276.029 688 278.485 688 281.515 C 688 284.544 691.93 287.001 694.705 287.001 C 697.48 287.001 703 284.544 703 281.515 C 703 278.485 697.48 276.029 694.705 276.029 Z "
+                                            fill="rgb(68,49,38)" />
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+
+    <!-- Javascript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        var box_x = 0, box_x_go2=0, bg_race= 0, box_number = 0, finish_race = 0, box_x_go=0;
+        var bar=[], moveing=0, box_x_go3=0;
+        var box_x1 = 0, box_x2 = 0, box_x3 = 0, box_x4 = 0, box_x5 = 0, box_x6 = 0;
+        var horse1, horse2, horse3 , horse4 , horse5 , horse6 ;
+        var rankhorse1, rankhorse2, rankhorse3, rankhorse4, rankhorse5, rankhorse6;
+        var finish = 12900, bar_limit = Math.floor(finish/100)+10
+        var $mainbox = $(".mainbox");
+        var barrier=[];
+        var listbox=[];
+        $(".mainbox").css({ width : finish+50})
+        $(".mainbox_around").css({ width: finish + 1500 })
+        // $(".mainbox").css({ witdh: finish + 500 })
+        // $(".mainbox").css({ witdh: finish + 500 })
+        $(".hedgeall1").html(function(){ 
+                for (let k = 1; k <= bar_limit; k++) {
+                    bar = "<div class='hedge1 hedgeall_hedge1'></div><div class='hedge2 hedgeall_hedge1'></div>";
+                    barrier += bar
+                }
+                return barrier
+            }); 
+        var barrier = [];    
+        $(".hedgeall2").html(function () {
+                for (let k = 1; k <= bar_limit; k++) {
+                    bar = "<div class='hedge1 hedgeall_hedge1'></div><div class='hedge2 hedgeall_hedge1'></div>";
+                    barrier += bar
+                }
+                return barrier
+            }); 
+        //=== horses position ===
+        for (let k = 1; k <= 6; k++) {
+            $(".box"+k).css({
+                bottom: 40*(7-k)+150
+            })
+            $(".stant_open" + k).css({
+                bottom: 40 * (7 - k) + 90
+            })
+        }
+        
+        const sleep = (ms) => {
+            return new Promise(resolve => setTimeout(resolve, ms))
+        }
+        $(".startrace").click( async () => {
+            $("g").removeClass(["animoff"])
+            $(".box svg").css({
+                boxShadow: "none",
+            })
+            $(".box").css({
+                transition: "8s",
+            })
+            $(".stant_o").slideUp(100);
+            // for(let i =1; i < 7 ;i++){
+            //     $(".box"+i).css({
+            //         left: Math.floor(Math.random()*150+20),
+            //     })
+                // if (stopfor == true) {
+                //     break;
+                    
+                // }
+            // }
+            while (finish_race <= finish){
+                // horse move x
+                box_number = Math.floor(Math.random() * 28)/4;
+                box_number2 = Math.floor(Math.random() * 56) / 8;
+                box_number3 = Math.floor(Math.random() * 3);
+                box_x1 = Math.floor(Math.random() * 7 );
+                box_x2 = Math.floor(Math.random() * 3);
+                box_x3 = -Math.floor(Math.random() * 3);
+
+                box_x_go += box_x1 
+                box_x_go2 += box_x2 
+                box_x_go3 += box_x3
+                
+                listbox1 = [
+                    box_x_go += box_x1 ,
+                    box_x_go2 += box_x2 ,
+                    box_x_go3 += box_x3,
+                ]
+                $(".box"+box_number).css({
+                    left : listbox1[box_number3]+250
+                })
+
+                // $(".box" + box_number2).css({
+                //     left: box_x_go2,
+                // })
+                // box_number4 = Math.floor(Math.random() * 29) / 4;
+                // for (let i = 1; i < box_number4; i++) {
+                //     listbox2=[
+                //         box_x1 += Math.floor(Math.random() * 10) - Math.floor(Math.random() * 8),
+                //         box_x2 += Math.floor(Math.random() * 10) - Math.floor(Math.random() * 8),
+                //         box_x3 += Math.floor(Math.random() * 10) - Math.floor(Math.random() * 8),
+                //         box_x4 += Math.floor(Math.random() * 10) - Math.floor(Math.random() * 8),
+                //         box_x5 += Math.floor(Math.random() * 10) - Math.floor(Math.random() * 8),
+                //         box_x6 += Math.floor(Math.random() * 10) - Math.floor(Math.random() * 8),
+                //     ]
+                //     console.log(i);
+                //     $(".box"+i).css({
+                //         left: listbox2[i-1]
+                //     })
+                    
+                // }
+                
+                
+                // speed background
+                bg_race -= 120 ;
+                finish_race =  - bg_race ; 
+                $(".mainbox").css({
+                    left: bg_race
+                })
+                await sleep(100);
+                var horses = {
+                    horse1 : "Stealin Pau",
+                    horse2 : "Bold Pilot",
+                    horse3 : "Timurhan",
+                    horse4 : "Dragon",
+                    horse5 : "Damista",
+                    horse6 : "Velociraptor",
+                };
+
+                // var liste_horse = []
+                // console.log(horse1);
+                // console.log(liste_offset[j - 1]);
+                // console.log(horse1 + horses.horse1);
+                
+            }
+            if (finish_race >= finish-1) {
+                var stopfor = true;
+                $("body").stop()
+                $(".box").stop()
+                $(".boxgame").stop()
+                var liste_offset =
+                    [
+                        horse1 = $(".box1").offset().left,
+                        horse2 = $(".box2").offset().left,
+                        horse3 = $(".box3").offset().left,
+                        horse4 = $(".box4").offset().left,
+                        horse5 = $(".box5").offset().left,
+                        horse6 = $(".box6").offset().left,
+                    ];
+                liste_offset.sort(function (a, b) { return b - a });
+
+                for (var j = 1; j <= 6; j++) {
+                    for (var k = 1; k <= 6; k++) {
+                        // console.log($(".box" + k).offset().left);
+                        if ($(".box" + k).offset().left == liste_offset[j - 1]) {
+                            $(".rankhorse" + k).css({
+                                left: 135 * (j - 1),
+                            })
+                            $(".money" + k).text(400 * (6 - j) + Math.floor(Math.random() * 100 * (6 - j)))
+                            console.log(j, "ranking", k, "horse");
+                            $(".ranking" + k).text(j)
+                        } else {
+                            // console.log("error ");
+                        }
+                    }
+                }
+                // $("g").addClass(["animoff"])
+                $(".rankh").show(1000)
+            }
+            rankhorse1 = $(".rankhorse1").html();
+            rankhorse2 = $(".rankhorse2").html();
+            rankhorse3 = $(".rankhorse3").html();
+            rankhorse4 = $(".rankhorse4").html();
+            rankhorse5 = $(".rankhorse5").html();
+            rankhorse6 = $(".rankhorse6").html();
+            
+            $mainbox.on('transitionend webkitTransitionEnd oTransitionEnd', function () {
+            //     var liste_offset =
+            //     [
+            //         horse1 = $(".box1").offset().left,
+            //         horse2 = $(".box2").offset().left,
+            //         horse3 = $(".box3").offset().left,
+            //         horse4 = $(".box4").offset().left,
+            //         horse5 = $(".box5").offset().left,
+            //         horse6 = $(".box6").offset().left,
+            //     ];
+            //     liste_offset.sort(function (a, b) { return b - a });
+                
+            //     for (var j = 1; j <= 6; j++) {
+            //         for (var k = 1; k <= 6; k++) {
+            //             // console.log($(".box" + k).offset().left);
+            //             if ($(".box" + k).offset().left == liste_offset[j - 1]) {
+            //                 $(".rankhorse"+k).css({
+            //                     left: 135 * (j-1),
+            //                 })
+            //                 $(".money"+k).text(400*(6-j) + Math.floor(Math.random()*100*(6-j)))
+            //                 console.log(j, "ranking" , k , "horse");
+            //                 $(".ranking" + k).text(j)
+            //             }else{
+            //                 // console.log("error ");
+            //             }
+            //         }
+            //     }
+                $("g").addClass(["animoff"])
+            //     $(".rankh").show(1000)
+            });
+            
+            
+            
+            
+        })
+        
+        
+    </script>
+</body>
+</html>
