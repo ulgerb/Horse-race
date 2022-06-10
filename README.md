@@ -12,8 +12,11 @@
   https://user-images.githubusercontent.com/98836519/172969355-b9a2118e-bafc-4611-8446-1d5c5bd2eebc.mp4
 
   ## Horse Race 2
-    -increased speed and power
-
+    //increased speed and power
+    box_x1 = Math.floor(Math.random() * 12 );
+        box_x2 = Math.floor(Math.random() * 2);
+        box_x3 = -Math.floor(Math.random() * 7);
+        
   https://user-images.githubusercontent.com/98836519/172969365-1c7c95e5-b4b7-407c-9d89-16dc53337b34.mp4
 
 
