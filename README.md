@@ -1,10 +1,11 @@
 # Horse-race
 @horse @horses @race @horse-races @javascript @minigame
 
-before the race starts
+
+## before the race starts
 <img src = "https://user-images.githubusercontent.com/98836519/172969008-372c539e-9073-4e80-b40b-6457fcfebf5c.jpg" width=500>
 
-racing line
+## racing line
 <img src = "https://user-images.githubusercontent.com/98836519/172969152-c64b7750-e29b-4d11-a116-bdf99a784bf5.jpg" width=500>
 
 ## Horse Race 1
