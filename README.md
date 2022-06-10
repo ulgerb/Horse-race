@@ -14,8 +14,8 @@
   ## Horse Race 2
     //increased speed and power
     box_x1 = Math.floor(Math.random() * 12 );
-        box_x2 = Math.floor(Math.random() * 2);
-        box_x3 = -Math.floor(Math.random() * 7);
+    box_x2 = Math.floor(Math.random() * 2);
+    box_x3 = -Math.floor(Math.random() * 7);
         
   https://user-images.githubusercontent.com/98836519/172969365-1c7c95e5-b4b7-407c-9d89-16dc53337b34.mp4
 
