@@ -23,26 +23,49 @@
 
 
   ## Explanation
+  start butonunu basıldığında, ilk önce başlangıç animasyonları devreye girer ve ardından "while" döngüsü yarış bitene kadar kodu çalıştırır. Tabi "while" döngüsü devreye girdiği zaman kodlar çok hızlı işleme alıncaktır. Bunun önüne geçebilmek için "while" döngüsünü "sleep" ile uyutmamız gerekir.  
   
     const sleep = (ms) => {
     return new Promise(resolve => setTimeout(resolve, ms))
     }
 
     $(".startrace").click( async () => {
-
         $("g").removeClass(["animoff"])
-
         $(".box svg").css({
             boxShadow: "none",
         })
-
         $(".box").css({
             transition: "5s",
         })
-
         $(".stant_o").slideUp(100);
-    ...
+        while (finish_race-80 <= finish){
+        ...
+        await sleep(100);
+        ...
 
+  Yarış bitiş çizgisine geldiğinde rank sıralaması yaparız. Atların "offset" değerine bakılır ve "sort" methodu ile liste içinde sıralama yaparız.
 
+    for (var j = 1; j <= 6; j++) {
+          for (var k = 1; k <= 6; k++) {
+              // console.log($(".box" + k).offset().left);
+              if ($(".box" + k).offset().left == liste_offset[j - 1]) {
+
+                  $(".rankhorse" + k).css({
+                      left: 135 * (j - 1),
+                  })
+
+                  $(".money" + k).text(400 * (6 - j) + Math.floor(Math.random() * 100 * (6 - j)))
+
+                  console.log(j, "ranking", k, "horse");
+
+                  $(".ranking" + k).text(j)
+
+              } else {
+                  // console.log("error ");
+              }
+          }
+      }
+
+  
 
 
