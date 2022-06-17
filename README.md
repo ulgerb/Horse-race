@@ -66,6 +66,11 @@
           }
       }
 
+Horse animasyonunu durdurmak için "transition" geçişlerin bitip bitmediğine bakabiliriz. Eğer bittiyse animasyonumuzu durdurucak bir class eklenir.
+    
+    $mainbox.on('transitionend webkitTransitionEnd oTransitionEnd', function () {
+        $("g").addClass(["animoff"])
+    });
   
 
 
