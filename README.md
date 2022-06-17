@@ -1,7 +1,7 @@
 # Horse-race
 @horse @horses @race @horse-races @javascript @minigame
 
-  ## Horses Run
+  ## Horse Run
   ![horses-run](https://user-images.githubusercontent.com/98836519/174305081-02fa5017-f00c-4ea8-91f9-bfe9257b8741.gif)
 
   ## Before the race starts
