@@ -22,6 +22,27 @@
   https://user-images.githubusercontent.com/98836519/172969365-1c7c95e5-b4b7-407c-9d89-16dc53337b34.mp4
 
 
+  ## Explanation
+  
+    const sleep = (ms) => {
+    return new Promise(resolve => setTimeout(resolve, ms))
+    }
+
+    $(".startrace").click( async () => {
+
+        $("g").removeClass(["animoff"])
+
+        $(".box svg").css({
+            boxShadow: "none",
+        })
+
+        $(".box").css({
+            transition: "5s",
+        })
+
+        $(".stant_o").slideUp(100);
+      ...
+
 
 
 
